@@ -7,7 +7,6 @@ import {
   Checkbox,
   Combobox,
   DatePicker,
-  DateRangePicker,
   FileDrop,
   FileIcon,
   Input,
@@ -295,37 +294,6 @@ export function FormsSection() {
                   Single
                 </p>
                 <Calendar onChange={(d) => d && toast({ title: d.toLocaleDateString() })} />
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontSize: 12,
-                    fontWeight: 500,
-                    color: 'var(--ui-muted)',
-                    margin: '0 0 8px',
-                  }}
-                >
-                  Range with presets
-                </p>
-                <DateRangePicker
-                  presets={[
-                    { label: 'Today', value: { from: new Date(), to: new Date() } },
-                    {
-                      label: 'Last 7 days',
-                      value: { from: new Date(Date.now() - 6 * 864e5), to: new Date() },
-                    },
-                    {
-                      label: 'Last 30 days',
-                      value: { from: new Date(Date.now() - 29 * 864e5), to: new Date() },
-                    },
-                  ]}
-                  onChange={(r) =>
-                    r?.from &&
-                    toast({
-                      title: `${r.from.toLocaleDateString()} → ${r.to?.toLocaleDateString() ?? ''}`,
-                    })
-                  }
-                />
               </div>
             </div>
           </Card.Content>

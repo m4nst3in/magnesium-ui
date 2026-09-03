@@ -16,7 +16,7 @@ CSS Modules + tokens. Light/dark. No Tailwind, no runtime. Zinc, 60fps.
 </div>
 
 <div align="center">
-  <img src=".github/assets/preview-light.png" alt="Playground" width="100%" />
+  <img src=".github/assets/preview-light.png" alt="Playground" width="800" />
   <p><sub>Playground at <code>npm run dev</code> — 31 components, same code that ships</sub></p>
 </div>
 

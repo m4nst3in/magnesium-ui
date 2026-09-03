@@ -60,7 +60,7 @@ export function Drawer({
   }, [open, mounted])
 
   useEffect(() => {
-    previouslyFocused.current = document.activeElement as HTMLElement | null
+    if (!mounted) return
 
     const sheet = sheetRef.current
     const focusables = sheet?.querySelectorAll<HTMLElement>(FOCUSABLE)
@@ -100,7 +100,7 @@ export function Drawer({
       unlockBodyScroll()
       queueMicrotask(() => previouslyFocused.current?.focus?.())
     }
-  }, [onClose])
+  }, [mounted, onClose])
 
   if (!mounted) return null
 

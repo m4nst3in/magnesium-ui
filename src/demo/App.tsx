@@ -92,107 +92,39 @@ function Playground() {
         </div>
       </nav>
 
-      <div className="layout">
-        <nav className="sidebar" aria-label="Sections">
-          <div className="navGroup">
-            <a className="navLink" href="#fundamentals">
-              Fundamentals
-            </a>
-            <a className="navLink" href="#forms">
-              Forms
-            </a>
-            <a className="navLink" href="#navigation">
-              Navigation
-            </a>
-            <a className="navLink" href="#overlays">
-              Overlays
-            </a>
+      <main className="main" style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+        <div id="fundamentals" className="category">
+          <div className="categoryHeader">
+            <h2>Fundamentals</h2>
+            <p>Buttons, feedback, structure.</p>
           </div>
-          <div className="navGroup" style={{ marginTop: 16 }}>
-            <p className="sidebarTitle">Shortcuts</p>
-            <div
-              style={{
-                display: 'flex',
-                gap: 6,
-                alignItems: 'center',
-                fontSize: 12,
-                color: 'var(--ui-muted)',
-              }}
-            >
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minWidth: 20,
-                  height: 20,
-                  padding: '0 4px',
-                  borderRadius: 6,
-                  background: 'var(--ui-zinc-100)',
-                  border: '1px solid var(--ui-zinc-200)',
-                  fontSize: 11,
-                  fontWeight: 500,
-                }}
-              >
-                ⌘
-              </span>
-              <span>+</span>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  minWidth: 20,
-                  height: 20,
-                  padding: '0 4px',
-                  borderRadius: 6,
-                  background: 'var(--ui-zinc-100)',
-                  border: '1px solid var(--ui-zinc-200)',
-                  fontSize: 11,
-                  fontWeight: 500,
-                }}
-              >
-                K
-              </span>
-              <span>command</span>
-            </div>
-          </div>
-        </nav>
+          <FundamentalsSection />
+        </div>
 
-        <main className="main">
-          <div id="fundamentals" className="category">
-            <div className="categoryHeader">
-              <h2>Fundamentals</h2>
-              <p>Buttons, feedback, structure.</p>
-            </div>
-            <FundamentalsSection />
+        <div id="forms" className="category">
+          <div className="categoryHeader">
+            <h2>Forms</h2>
+            <p>Inputs, controls.</p>
           </div>
+          <FormsSection />
+        </div>
 
-          <div id="forms" className="category">
-            <div className="categoryHeader">
-              <h2>Forms</h2>
-              <p>Inputs, controls.</p>
-            </div>
-            <FormsSection />
+        <div id="navigation" className="category">
+          <div className="categoryHeader">
+            <h2>Navigation</h2>
+            <p>Tables, navigation.</p>
           </div>
+          <NavigationSection />
+        </div>
 
-          <div id="navigation" className="category">
-            <div className="categoryHeader">
-              <h2>Navigation</h2>
-              <p>Tables, navigation.</p>
-            </div>
-            <NavigationSection />
+        <div id="overlays" className="category">
+          <div className="categoryHeader">
+            <h2>Overlays</h2>
+            <p>Modals, drawers, command.</p>
           </div>
-
-          <div id="overlays" className="category">
-            <div className="categoryHeader">
-              <h2>Overlays</h2>
-              <p>Modals, drawers, command.</p>
-            </div>
-            <OverlaysSection />
-          </div>
-        </main>
-      </div>
+          <OverlaysSection />
+        </div>
+      </main>
     </div>
   )
 }

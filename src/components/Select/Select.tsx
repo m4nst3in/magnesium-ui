@@ -150,7 +150,7 @@ export function Select({
           }}
         >
           <span className={cn(styles.valueText, !selected && styles.placeholder)}>
-            {selected ? selected.label : (placeholder ?? 'Selecione…')}
+            {selected ? selected.label : (placeholder ?? 'Select…')}
           </span>
           <svg
             className={cn(styles.chevron, open && styles.chevronOpen)}

@@ -9,9 +9,13 @@ import {
   FileIcon,
   Kbd,
   Modal,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Tooltip,
   useToast,
 } from '../../index'
+
 export function OverlaysSection() {
   const { toast } = useToast()
   const [modalOpen, setModalOpen] = useState(false)
@@ -53,6 +57,38 @@ export function OverlaysSection() {
           </Dropdown>
         </div>
       </section>
+      <section className="section">
+        <h2>Popover</h2>
+        <Card>
+          <Card.Content>
+            <div className="row">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline" size="sm">
+                    Open Popover
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent side="top" align="center" style={{ padding: 12, minWidth: 220 }}>
+                  <p style={{ margin: 0, fontSize: 13, fontWeight: 500 }}>Popover title</p>
+                  <p style={{ margin: 0, fontSize: 12, color: 'var(--ui-muted)' }}>
+                    Side top, align center, arrow, portal. Click outside or Esc to close.
+                  </p>
+                </PopoverContent>
+              </Popover>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    Bottom start
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent side="bottom" align="start" style={{ padding: 10, fontSize: 12 }}>
+                  Bottom start content
+                </PopoverContent>
+              </Popover>
+            </div>
+          </Card.Content>
+        </Card>
+      </section>
 
       <section className="section">
         <h2>Drawer / Sheet</h2>
@@ -83,10 +119,6 @@ export function OverlaysSection() {
                 Sheet (right)
               </Button>
             </div>
-            <p style={{ margin: '12px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>
-              Overlay with blur 10px, ESC / click outside / Tab trap, 4 sides, 3 sizes — same API as
-              Modal.
-            </p>
           </Card.Content>
         </Card>
         <Drawer

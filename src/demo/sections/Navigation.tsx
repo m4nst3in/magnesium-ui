@@ -8,6 +8,7 @@ import {
   Button,
   Card,
   Collapsible,
+  DataTable,
   Pagination,
   Table,
   Tabs,
@@ -125,10 +126,6 @@ export function NavigationSection() {
                   Next
                 </Button>
               </div>
-              <Pagination page={5} total={24} onChange={() => {}} siblingCount={2} />
-              <p style={{ margin: 0, fontSize: 12, color: 'var(--ui-muted)' }}>
-                Auto ellipsis with `siblingCount` — Prev/Next disable at edges.
-              </p>
             </div>
           </Card.Content>
         </Card>
@@ -136,12 +133,6 @@ export function NavigationSection() {
 
       <section className="section">
         <h2>Table — Linear / shadcn</h2>
-        <p
-          className="subtitle"
-          style={{ margin: '0 0 12px', fontSize: 13, color: 'var(--ui-muted)' }}
-        >
-          Sticky header with blur, hover with accent, interactive rows + keyboard — click a row
-        </p>
         <Table>
           <Table.Header>
             <Table.Row>
@@ -391,6 +382,54 @@ export function NavigationSection() {
           </Table.Body>
           <Table.Caption>4 files · click interactive rows (keyboard Enter/Space)</Table.Caption>
         </Table>
+      </section>
+      <section className="section">
+        <h2>DataTable</h2>
+        <Card>
+          <Card.Content>
+            <DataTable
+              columns={[
+                { id: 'file', header: 'File', accessorKey: 'file' },
+                { id: 'size', header: 'Size', accessorKey: 'size' },
+                { id: 'status', header: 'Status', accessorKey: 'status' },
+                { id: 'owner', header: 'Owner', accessorKey: 'owner' },
+              ]}
+              data={[
+                {
+                  id: '1',
+                  file: 'relatorio-q1.pdf',
+                  size: '2.4 MB',
+                  status: 'Ready',
+                  owner: 'lesce',
+                },
+                {
+                  id: '2',
+                  file: 'budget.xlsx',
+                  size: '880 KB',
+                  status: 'Processing',
+                  owner: 'marina',
+                },
+                { id: '3', file: 'backup.zip', size: '1.2 GB', status: 'Failed', owner: 'ana' },
+                {
+                  id: '4',
+                  file: 'demo-linear.mp4',
+                  size: '342 MB',
+                  status: 'Archived',
+                  owner: 'joão',
+                },
+                {
+                  id: '5',
+                  file: 'invoice-2024.pdf',
+                  size: '1.1 MB',
+                  status: 'Ready',
+                  owner: 'lesce',
+                },
+                { id: '6', file: 'assets.zip', size: '45 MB', status: 'Ready', owner: 'marina' },
+              ]}
+              pagination={{ pageIndex: 0, pageSize: 5 }}
+            />
+          </Card.Content>
+        </Card>
       </section>
 
       <section className="section">

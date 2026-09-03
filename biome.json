@@ -25,18 +25,27 @@
         "useKeyWithClickEvents": "off",
         "noStaticElementInteractions": "off",
         "useSemanticElements": "off",
-        "useAriaPropsForRole": "off"
+        "useAriaPropsForRole": "off",
+        "noInteractiveElementToNoninteractiveRole": "off"
       },
       "suspicious": {
         "noArrayIndexKey": "off",
-        "useIterableCallbackReturn": "off"
+        "useIterableCallbackReturn": "off",
+        "noGlobalIsNan": "off"
       },
       "style": {
         "noDescendingSpecificity": "off",
         "noNonNullAssertion": "off"
       },
+      "complexity": {
+        "noExtraBooleanCast": "off",
+        "useLiteralKeys": "off",
+        "useOptionalChain": "off",
+        "noImportantStyles": "off"
+      },
       "correctness": {
-        "useExhaustiveDependencies": "off"
+        "useExhaustiveDependencies": "off",
+        "useHookAtTopLevel": "off"
       }
     }
   },

@@ -29,7 +29,7 @@ function Playground() {
       <header className="header">
         <div>
           <h1>Magnesium UI</h1>
-          <p className="subtitle">@m4nst3in/magnesium-ui — lightweight UI kit</p>
+          <p className="subtitle">@m4nst3in/magnesium-ui</p>
         </div>
         <Button variant="outline" size="sm" onClick={() => setDark((d) => !d)}>
           {dark ? '☀️ Light' : '🌙 Dark'}
@@ -117,23 +117,21 @@ function Playground() {
           <div id="fundamentals" className="category">
             <div className="categoryHeader">
               <h2>Fundamentals</h2>
-              <p>Visual primitives — buttons, feedback, structure and utilities.</p>
+              <p>Buttons, feedback, structure.</p>
             </div>
             <FundamentalsSection />
           </div>
-
           <div id="forms" className="category">
             <div className="categoryHeader">
               <h2>Forms</h2>
-              <p>Inputs and controls with validation, states and interactions.</p>
+              <p>Inputs, controls.</p>
             </div>
             <FormsSection />
           </div>
-
           <div id="navigation" className="category">
             <div className="categoryHeader">
               <h2>Navigation</h2>
-              <p>Structure, tables and navigation between views.</p>
+              <p>Tables, navigation.</p>
             </div>
             <NavigationSection />
           </div>
@@ -141,7 +139,7 @@ function Playground() {
           <div id="overlays" className="category">
             <div className="categoryHeader">
               <h2>Overlays</h2>
-              <p>Floating layers — modals, menus, drawers and command palette.</p>
+              <p>Modals, drawers, command.</p>
             </div>
             <OverlaysSection />
           </div>

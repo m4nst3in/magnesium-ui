@@ -200,9 +200,6 @@ export function FundamentalsSection() {
                 <CopyButton value="sk_live_51Hx...3a9f" aria-label="Copy API key" />
                 <CopyButton value="super-secret-123" size="md" aria-label="Copy large" />
               </div>
-              <p style={{ margin: 0, fontSize: 12, color: 'var(--ui-muted)' }}>
-                28px (sm) and 32px (md) — turns into green check for 1.8s, double click is safe.
-              </p>
             </div>
           </Card.Content>
         </Card>

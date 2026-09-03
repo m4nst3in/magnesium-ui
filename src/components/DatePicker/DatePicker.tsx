@@ -61,11 +61,11 @@ export function DatePicker({
   defaultValue,
   onChange,
   label,
-  placeholder = 'Selecione uma data…',
+  placeholder = 'Select a date…',
   hint,
   error,
   disabled,
-  locale = 'pt-BR',
+  locale = 'en-US',
   className,
 }: DatePickerProps) {
   const autoId = useId()

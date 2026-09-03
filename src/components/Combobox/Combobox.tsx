@@ -40,8 +40,8 @@ export function Combobox({
   hint,
   error,
   placeholder,
-  searchPlaceholder = 'Buscar…',
-  emptyMessage = 'Nenhum resultado',
+  searchPlaceholder = 'Search…',
+  emptyMessage = 'No results',
   disabled,
   id,
   className,
@@ -175,7 +175,7 @@ export function Combobox({
           }}
         >
           <span className={cn(styles.valueText, !selected && styles.placeholder)}>
-            {selected ? selected.label : (placeholder ?? 'Selecione…')}
+            {selected ? selected.label : (placeholder ?? 'Select…')}
           </span>
           <svg
             className={cn(styles.chevron, open && styles.chevronOpen)}

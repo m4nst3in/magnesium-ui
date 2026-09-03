@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 
 import {
   Button,
+  Calendar,
   Card,
   Checkbox,
   Combobox,
   DatePicker,
+  DateRangePicker,
   FileDrop,
   FileIcon,
   Input,
@@ -121,10 +123,6 @@ export function FormsSection() {
                 error="Above maximum (100)"
               />
             </div>
-            <p style={{ margin: '14px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>
-              Controlled/uncontrolled, clamp + snap, stepper with hold, keyboard ↑↓ PgUp/Dn
-              Home/End.
-            </p>
           </Card.Content>
         </Card>
       </section>
@@ -141,15 +139,8 @@ export function FormsSection() {
                   if (typeof value === 'number') setVolume(value)
                 }}
                 showValue
-                hint="Drag, click track or use ← → Home/End · Shift accelerates"
               />
-              <Slider
-                label="Brightness"
-                defaultValue={68}
-                showValue
-                formatValue={(v) => `${v}%`}
-                hint="Uncontrolled · bubble on thumb hover"
-              />
+              <Slider label="Brightness" defaultValue={68} showValue formatValue={(v) => `${v}%`} />
               <Slider
                 label="Price range"
                 value={price}
@@ -161,7 +152,6 @@ export function FormsSection() {
                 step={10}
                 showValue
                 formatValue={(v) => `$${v}`}
-                hint="Range — two thumbs (no crossing) · click track moves closest"
               />
               <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                 <Slider label="Disabled" defaultValue={30} disabled showValue />
@@ -281,6 +271,62 @@ export function FormsSection() {
                   </Button>
                 </div>
               )}
+            </div>
+          </Card.Content>
+        </Card>
+      </section>
+      <section className="section">
+        <h2>Calendar</h2>
+        <Card>
+          <Card.Content>
+            <div
+              className="grid"
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}
+            >
+              <div>
+                <p
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 500,
+                    color: 'var(--ui-muted)',
+                    margin: '0 0 8px',
+                  }}
+                >
+                  Single
+                </p>
+                <Calendar onChange={(d) => d && toast({ title: d.toLocaleDateString() })} />
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: 12,
+                    fontWeight: 500,
+                    color: 'var(--ui-muted)',
+                    margin: '0 0 8px',
+                  }}
+                >
+                  Range with presets
+                </p>
+                <DateRangePicker
+                  presets={[
+                    { label: 'Today', value: { from: new Date(), to: new Date() } },
+                    {
+                      label: 'Last 7 days',
+                      value: { from: new Date(Date.now() - 6 * 864e5), to: new Date() },
+                    },
+                    {
+                      label: 'Last 30 days',
+                      value: { from: new Date(Date.now() - 29 * 864e5), to: new Date() },
+                    },
+                  ]}
+                  onChange={(r) =>
+                    r?.from &&
+                    toast({
+                      title: `${r.from.toLocaleDateString()} → ${r.to?.toLocaleDateString() ?? ''}`,
+                    })
+                  }
+                />
+              </div>
             </div>
           </Card.Content>
         </Card>

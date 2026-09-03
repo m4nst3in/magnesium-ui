@@ -1,0 +1,89 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.wrapper:has(.input:disabled) {
+  cursor: not-allowed;
+}
+
+.input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-subtle);
+  color: var(--ui-primary-fg);
+  transition:
+    background-color var(--ui-duration) ease,
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.box svg {
+  opacity: 0;
+  transform: scale(0.5);
+  transition:
+    opacity var(--ui-duration) ease,
+    transform var(--ui-duration) ease;
+}
+
+.wrapper:hover:where(:not(:has(.input:disabled))) .box {
+  background: var(--ui-hover-strong);
+}
+
+.input:checked + .box {
+  background: var(--ui-primary);
+}
+
+.input:checked + .box svg {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.input:active + .box {
+  transform: scale(0.85);
+  transition-duration: 70ms;
+}
+
+.input:focus-visible + .box {
+  box-shadow: 0 0 0 3px var(--ui-primary-soft);
+}
+
+.input:disabled + .box {
+  opacity: 0.5;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--ui-fg);
+}
+
+.wrapper:has(.input:disabled) .label {
+  color: var(--ui-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .box {
+    transition: none;
+  }
+
+  .input:active + .box {
+    transform: none;
+  }
+}

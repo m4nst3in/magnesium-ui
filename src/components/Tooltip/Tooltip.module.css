@@ -1,0 +1,113 @@
+.wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+.bubble {
+  position: absolute;
+  z-index: var(--ui-z-tooltip);
+  width: max-content;
+  max-width: 260px;
+  padding: 4px 8px;
+  border-radius: var(--ui-radius-sm);
+  background: var(--ui-primary);
+  color: var(--ui-primary-fg);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: var(--ui-shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+.wrapper:hover .bubble,
+.wrapper:focus-within .bubble {
+  opacity: 1;
+  transition-delay: 300ms;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+
+.top {
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(2px);
+}
+
+.top::after {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.wrapper:hover .top,
+.wrapper:focus-within .top {
+  transform: translateX(-50%) translateY(0);
+}
+
+.bottom {
+  top: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.bottom::after {
+  top: -3px;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.wrapper:hover .bottom,
+.wrapper:focus-within .bottom {
+  transform: translateX(-50%) translateY(0);
+}
+
+.left {
+  right: calc(100% + 9px);
+  top: 50%;
+  transform: translateY(-50%) translateX(2px);
+}
+
+.left::after {
+  right: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+.wrapper:hover .left,
+.wrapper:focus-within .left {
+  transform: translateY(-50%) translateX(0);
+}
+
+.right {
+  left: calc(100% + 9px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-2px);
+}
+
+.right::after {
+  left: -3px;
+  top: 50%;
+  margin-top: -3px;
+}
+
+.wrapper:hover .right,
+.wrapper:focus-within .right {
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble {
+    transition: none;
+  }
+}

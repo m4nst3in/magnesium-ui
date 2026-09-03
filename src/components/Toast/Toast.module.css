@@ -1,0 +1,111 @@
+.viewport {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: var(--ui-z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(360px, calc(100vw - 40px));
+}
+
+.toast {
+  padding: 12px 14px;
+  border-radius: var(--ui-radius-lg);
+  background: var(--ui-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ui-fg);
+  box-shadow: var(--ui-shadow-md);
+  animation: toastIn 260ms cubic-bezier(0.21, 1.02, 0.73, 1) both;
+}
+
+.leaving {
+  pointer-events: none;
+  animation: toastOut 180ms ease-in forwards;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ui-muted);
+}
+
+.info .dot {
+  background: var(--ui-primary);
+}
+
+.success .dot {
+  background: var(--ui-success);
+}
+
+.warning .dot {
+  background: var(--ui-warning);
+}
+
+.danger .dot {
+  background: var(--ui-danger);
+}
+
+.title {
+  flex: 1;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  color: var(--ui-muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--ui-hover);
+  color: var(--ui-fg);
+}
+
+.description {
+  margin: 2px 0 0;
+  padding-left: 14px;
+  font-size: 13px;
+  color: var(--ui-muted);
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+}
+
+@keyframes toastOut {
+  to {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .leaving {
+    animation: none;
+  }
+}

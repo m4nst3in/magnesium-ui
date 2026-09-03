@@ -1,0 +1,133 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.inputHidden {
+  display: none;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 132px;
+  padding: 20px 16px;
+  background: var(--ui-subtle);
+  border: 1px dashed var(--ui-border);
+  border-radius: 10px;
+  box-shadow: var(--ui-shadow-xs);
+  color: var(--ui-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--ui-duration) ease,
+    border-color var(--ui-duration) ease,
+    color var(--ui-duration) ease,
+    transform var(--ui-duration) ease,
+    box-shadow var(--ui-duration) ease;
+}
+
+.dropzone:hover:not(.disabled):not(:focus-visible) {
+  background: var(--ui-hover);
+  border-color: var(--ui-border-strong);
+}
+
+.dropzone:focus-visible {
+  outline: none;
+  border-color: var(--ui-primary);
+  box-shadow: 0 0 0 3px var(--ui-primary-soft);
+}
+
+.dragOver {
+  background: var(--ui-hover) !important;
+  border-color: var(--ui-primary) !important;
+  border-style: dashed;
+  transform: scale(1.005);
+  box-shadow: var(--ui-shadow-sm);
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.invalid {
+  border-color: var(--ui-danger);
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-danger-text);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+
+.iconSm {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+}
+
+.iconSm svg {
+  width: 12px;
+  height: 12px;
+}
+
+.variantDoc {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger-text);
+}
+
+.variantGrid {
+  background: var(--ui-success-soft);
+  color: var(--ui-success-text);
+}
+
+.variantBox {
+  background: var(--ui-warning-soft);
+  color: var(--ui-warning-text);
+}
+
+.variantFilm {
+  background: color-mix(in srgb, #7c3aed 10%, var(--ui-surface));
+  border-color: color-mix(in srgb, #7c3aed 14%, transparent);
+  color: #7c3aed;
+}
+
+.variantGeneric {
+  background: var(--ui-danger-soft);
+  color: var(--ui-danger-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropzone {
+    transition: none;
+  }
+
+  .dragOver {
+    transform: none;
+  }
+}

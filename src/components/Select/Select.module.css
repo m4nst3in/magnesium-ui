@@ -1,0 +1,149 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ui-fg);
+}
+
+.selectWrap {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px;
+  background: var(--ui-subtle);
+  border: none;
+  border-radius: var(--ui-radius-md);
+  font-size: 14px;
+  color: var(--ui-fg);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--ui-duration) ease,
+    box-shadow var(--ui-duration) ease;
+}
+
+.trigger:hover:not(:disabled) {
+  background: var(--ui-hover);
+}
+
+.trigger:focus-visible,
+.open {
+  background: var(--ui-surface);
+}
+
+.trigger:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-primary-soft);
+  outline: none;
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.invalid {
+  background: var(--ui-danger-soft);
+}
+
+.invalid:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-danger-soft);
+}
+
+.valueText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--ui-muted);
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--ui-muted);
+  transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: var(--ui-z-modal);
+  max-height: 240px;
+  padding: 4px;
+  overflow-y: auto;
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-lg);
+  animation: menuIn 130ms ease;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: var(--ui-radius-sm);
+  font-size: 13px;
+  color: var(--ui-fg);
+  cursor: pointer;
+  transition: background-color var(--ui-duration) ease;
+}
+
+.active {
+  background: var(--ui-hover);
+}
+
+.check {
+  flex-shrink: 0;
+  color: var(--ui-fg);
+}
+
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-danger-text);
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+
+  .chevron {
+    transition: none;
+  }
+}

@@ -1,0 +1,272 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ui-fg);
+}
+
+.selectWrap {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 12px;
+  background: var(--ui-subtle);
+  border: none;
+  border-radius: var(--ui-radius-md);
+  font-size: 14px;
+  color: var(--ui-fg);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background-color var(--ui-duration) ease,
+    box-shadow var(--ui-duration) ease;
+}
+
+.trigger:hover:not(:disabled) {
+  background: var(--ui-hover);
+}
+
+.trigger:focus-visible,
+.open {
+  background: var(--ui-surface);
+}
+
+.trigger:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-primary-soft);
+  outline: none;
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.invalid {
+  background: var(--ui-danger-soft);
+}
+
+.invalid:focus-visible {
+  box-shadow: 0 0 0 3px var(--ui-danger-soft);
+}
+
+.valueText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--ui-muted);
+}
+
+.icon {
+  flex-shrink: 0;
+  color: var(--ui-muted);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: var(--ui-z-modal);
+  width: 252px;
+  padding: 10px;
+  border-radius: var(--ui-radius-md);
+  background: var(--ui-surface);
+  box-shadow: var(--ui-shadow-lg);
+  animation: menuIn 130ms ease;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.headerBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 6px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-fg);
+  cursor: pointer;
+  transition: background-color var(--ui-duration) ease;
+}
+
+.headerBtn:hover {
+  background: var(--ui-hover);
+}
+
+.headerBtn svg {
+  color: var(--ui-muted);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  color: var(--ui-muted);
+  cursor: pointer;
+  transition:
+    background-color var(--ui-duration) ease,
+    color var(--ui-duration) ease;
+}
+
+.navBtn:hover {
+  background: var(--ui-hover);
+  color: var(--ui-fg);
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.weekday {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ui-muted);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  font-size: 12px;
+  color: var(--ui-fg);
+  cursor: pointer;
+  transition: background-color var(--ui-duration) ease;
+}
+
+.day:hover {
+  background: var(--ui-hover);
+}
+
+.day:focus-visible {
+  outline: 2px solid var(--ui-primary);
+  outline-offset: -2px;
+}
+
+.today {
+  box-shadow: inset 0 0 0 1px var(--ui-border-strong);
+}
+
+.selected {
+  background: var(--ui-primary);
+  color: var(--ui-primary-fg);
+  font-weight: 600;
+}
+
+.selected:hover {
+  background: var(--ui-primary);
+}
+
+.muted {
+  opacity: 0.35;
+}
+
+.pickerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+
+.cellBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border: none;
+  border-radius: var(--ui-radius-sm);
+  background: none;
+  font-size: 12px;
+  color: var(--ui-fg);
+  cursor: pointer;
+  transition: background-color var(--ui-duration) ease;
+}
+
+.cellBtn:hover {
+  background: var(--ui-hover);
+}
+
+.cellSelected {
+  background: var(--ui-primary);
+  color: var(--ui-primary-fg);
+  font-weight: 600;
+}
+
+.cellSelected:hover {
+  background: var(--ui-primary);
+}
+
+.cellToday {
+  box-shadow: inset 0 0 0 1px var(--ui-border-strong);
+}
+
+.error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-danger-text);
+}
+
+.hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+
+@keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu {
+    animation: none;
+  }
+}

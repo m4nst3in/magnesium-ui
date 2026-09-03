@@ -1,0 +1,131 @@
+
+
+.nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ui-muted);
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.item:hover:not(:disabled):not(.active) {
+  background: var(--ui-hover);
+  color: var(--ui-fg);
+  border-color: var(--ui-border);
+}
+
+.item:active:not(:disabled):not(.active) {
+  background: var(--ui-hover-strong);
+}
+
+.item:focus-visible {
+  outline: none;
+  border-color: var(--ui-zinc-900);
+  box-shadow: 0 0 0 3px var(--ui-primary-soft);
+}
+
+:root[data-theme='dark'] .item:focus-visible {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
+}
+
+.item:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.active {
+  background: var(--ui-primary);
+  color: var(--ui-primary-fg);
+  border-color: var(--ui-primary);
+  box-shadow: var(--ui-shadow-xs);
+}
+
+.active:hover {
+  background: var(--ui-primary-hover);
+  border-color: var(--ui-primary-hover);
+}
+
+:root[data-theme='dark'] .active {
+  background: #fff;
+  color: #0a0a0a;
+  border-color: #fff;
+}
+
+:root[data-theme='dark'] .active:hover {
+  background: #f4f4f5;
+}
+
+.navBtn {
+  gap: 6px;
+  padding: 0 12px;
+  font-size: 13px;
+  border-color: var(--ui-border);
+  background: var(--ui-surface);
+  color: var(--ui-fg);
+  box-shadow: var(--ui-shadow-xs);
+}
+
+.navBtn:hover:not(:disabled) {
+  background: var(--ui-hover);
+  border-color: var(--ui-border-strong);
+}
+
+.navLabel {
+  font-size: 13px;
+}
+
+.ellipsis {
+  min-width: 32px;
+  pointer-events: none;
+  border-color: transparent;
+  background: transparent;
+  color: var(--ui-muted);
+}
+
+.dots {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 480px) {
+  .navLabel {
+    display: none;
+  }
+
+  .navBtn {
+    min-width: 32px;
+    padding: 0 8px;
+  }
+}

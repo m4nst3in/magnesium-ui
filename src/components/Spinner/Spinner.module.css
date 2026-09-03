@@ -1,0 +1,43 @@
+.spinner {
+  display: inline-block;
+  flex-shrink: 0;
+  animation:
+    spin 0.9s linear infinite,
+    fadeIn 150ms ease;
+}
+
+.track {
+  opacity: 0.2;
+}
+
+.arc {
+  stroke-dasharray: 1 99;
+  animation: dash 1.2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1 99;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 60 40;
+    stroke-dashoffset: -25;
+  }
+  100% {
+    stroke-dasharray: 1 99;
+    stroke-dashoffset: -99;
+  }
+}

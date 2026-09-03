@@ -257,6 +257,35 @@
   border-radius: 0;
 }
 
+@media (max-width: 640px) {
+  .rangeBody {
+    flex-direction: column;
+  }
+
+  .presets {
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
+    padding-right: 0;
+    padding-bottom: 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  .presets .presetButton {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  .months {
+    gap: 16px;
+  }
+
+  .monthsTwo {
+    flex-direction: column;
+  }
+}
+
 .rangeInputs {
   display: flex;
   align-items: center;

@@ -26,7 +26,7 @@
   flex-shrink: 0;
   width: 16px;
   height: 16px;
-  border: none;
+  border: 1px solid var(--ui-border-strong);
   border-radius: var(--ui-radius-sm);
   background: var(--ui-subtle);
   color: var(--ui-primary-fg);
@@ -49,6 +49,7 @@
 
 .input:checked + .box {
   background: var(--ui-primary);
+  border-color: transparent;
 }
 
 .input:checked + .box svg {

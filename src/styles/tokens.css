@@ -51,6 +51,7 @@
   --ui-primary-hover: var(--ui-zinc-800);
   --ui-primary-fg: var(--ui-zinc-50);
   --ui-primary-soft: rgba(9, 9, 11, 0.14);
+  --ui-accent: #7c3aed;
 
   --ui-success: var(--ui-green-600);
   --ui-success-soft: #f0fdf4;
@@ -82,6 +83,7 @@
   --ui-primary-hover: var(--ui-zinc-200);
   --ui-primary-fg: var(--ui-zinc-900);
   --ui-primary-soft: rgba(255, 255, 255, 0.18);
+  --ui-accent: #a78bfa;
 
   --ui-success: #22c55e;
   --ui-success-soft: rgba(34, 197, 94, 0.12);

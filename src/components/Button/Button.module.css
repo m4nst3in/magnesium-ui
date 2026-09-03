@@ -98,12 +98,12 @@
 
 .danger {
   background: var(--ui-danger);
-  color: #fff;
+  color: var(--ui-zinc-50);
 }
 
 .danger:hover:not(:disabled) {
   background: var(--ui-danger-hover);
-  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.35);
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--ui-danger) 35%, transparent);
 }
 
 .fullWidth {

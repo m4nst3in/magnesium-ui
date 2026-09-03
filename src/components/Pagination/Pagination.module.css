@@ -54,7 +54,7 @@
 }
 
 :root[data-theme='dark'] .item:focus-visible {
-  border-color: #fff;
+  border-color: var(--ui-primary);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
 }
 
@@ -73,16 +73,6 @@
 .active:hover {
   background: var(--ui-primary-hover);
   border-color: var(--ui-primary-hover);
-}
-
-:root[data-theme='dark'] .active {
-  background: #fff;
-  color: #0a0a0a;
-  border-color: #fff;
-}
-
-:root[data-theme='dark'] .active:hover {
-  background: #f4f4f5;
 }
 
 .navBtn {

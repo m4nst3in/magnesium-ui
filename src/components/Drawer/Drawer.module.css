@@ -102,7 +102,7 @@
 }
 
 :root[data-theme='dark'] .sheet {
-  border-color: #232326;
+  border-color: var(--ui-border);
 }
 
 .header {
@@ -177,7 +177,7 @@
 }
 
 :root[data-theme='dark'] .close:focus-visible {
-  border-color: #fff;
+  border-color: var(--ui-primary);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.14);
 }
 

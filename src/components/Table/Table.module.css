@@ -27,14 +27,14 @@
 }
 
 :root[data-theme='dark'] .scroll {
-  border-color: #232326;
-  background: #0f0f12;
+  border-color: var(--ui-border);
+  background: var(--ui-subtle);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  scrollbar-color: #2a2a2e transparent;
+  scrollbar-color: var(--ui-hover-strong) transparent;
 }
 
 :root[data-theme='dark'] .scroll::-webkit-scrollbar-thumb {
-  background: #2a2a2e;
+  background: var(--ui-hover-strong);
 }
 
 .table {
@@ -68,8 +68,8 @@
 }
 
 :root[data-theme='dark'] .th {
-  background: color-mix(in srgb, #0f0f12 92%, #1a1a1e);
-  border-bottom-color: #232326;
+  background: color-mix(in srgb, var(--ui-subtle) 92%, var(--ui-hover));
+  border-bottom-color: var(--ui-border);
   color: var(--ui-zinc-400);
 }
 
@@ -163,7 +163,7 @@
 }
 
 :root[data-theme='dark'] .row:hover .td {
-  background: #1a1a1e;
+  background: var(--ui-hover);
 }
 
 .row:active .td {
@@ -171,7 +171,7 @@
 }
 
 :root[data-theme='dark'] .row:active .td {
-  background: #1f1f23;
+  background: var(--ui-hover-strong);
 }
 
 .body .row:last-child .td {

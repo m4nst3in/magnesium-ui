@@ -97,10 +97,3 @@ src/components/MyComp/MyComp.tsx + MyComp.module.css
 
 Mg 12 — lightweight metal, like zinc. Same vibe as the palette. And `magnesium-ui` was free on npm.
 
----
-
-<div align="center">
-
-`@m4nst3in/magnesium-ui` — built by [@m4nst3in](https://github.com/m4nst3in) · formerly `@lesce/ui`
-
-</div>

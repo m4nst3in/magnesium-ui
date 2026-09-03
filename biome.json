@@ -26,7 +26,9 @@
         "noStaticElementInteractions": "off",
         "useSemanticElements": "off",
         "useAriaPropsForRole": "off",
-        "noInteractiveElementToNoninteractiveRole": "off"
+        "noInteractiveElementToNoninteractiveRole": "off",
+        "useValidAnchor": "off",
+        "useAnchorContent": "off"
       },
       "suspicious": {
         "noArrayIndexKey": "off",

@@ -15,7 +15,7 @@ export function App() {
 }
 
 function Playground() {
-  const [dark, setDark] = useState(false)
+  const [dark, setDark] = useState(true)
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light'
@@ -24,45 +24,91 @@ function Playground() {
   useEffect(() => {
     document.body.style.overflow = ''
   }, [])
+
   return (
     <div className="page">
-      <header className="header">
-        <div>
-          <h1>Magnesium UI</h1>
-          <p className="subtitle">@m4nst3in/magnesium-ui</p>
+      <nav className="topNav">
+        <div className="topNavLeft">
+          <a className="topNavLogo" href="#">
+            <span
+              style={{
+                width: 22,
+                height: 22,
+                borderRadius: 6,
+                background: 'var(--ui-primary)',
+                color: 'var(--ui-primary-fg)',
+                display: 'grid',
+                placeItems: 'center',
+                fontSize: 11,
+                fontWeight: 700,
+              }}
+            >
+              Mg
+            </span>
+            Magnesium
+          </a>
+          <div className="topNavLinks">
+            <a className="topNavLink active" href="#fundamentals">
+              Components
+            </a>
+            <a className="topNavLink" href="#forms">
+              Forms
+            </a>
+            <a className="topNavLink" href="#navigation">
+              Navigation
+            </a>
+            <a className="topNavLink" href="#overlays">
+              Overlays
+            </a>
+          </div>
         </div>
-        <Button variant="outline" size="sm" onClick={() => setDark((d) => !d)}>
-          {dark ? '☀️ Light' : '🌙 Dark'}
-        </Button>
-      </header>
+        <div className="topNavRight">
+          <input
+            className="topNavSearch"
+            placeholder="Search documentation..."
+            aria-label="Search"
+          />
+          <a
+            href="https://github.com/m4nst3in/magnesium-ui"
+            target="_blank"
+            rel="noreferrer"
+            className="topNavLink"
+            style={{ padding: '6px 8px' }}
+            aria-label="GitHub"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+            </svg>
+          </a>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setDark((d) => !d)}
+            aria-label="Toggle theme"
+          >
+            {dark ? '☀️' : '🌙'}
+          </Button>
+          <Button size="sm">+ New</Button>
+        </div>
+      </nav>
 
       <div className="layout">
         <nav className="sidebar" aria-label="Sections">
           <div className="navGroup">
-            <p className="sidebarTitle">Fundamentals</p>
             <a className="navLink" href="#fundamentals">
               Fundamentals
             </a>
-          </div>
-          <div className="navGroup">
-            <p className="sidebarTitle">Forms</p>
             <a className="navLink" href="#forms">
               Forms
             </a>
-          </div>
-          <div className="navGroup">
-            <p className="sidebarTitle">Navigation</p>
             <a className="navLink" href="#navigation">
               Navigation
             </a>
-          </div>
-          <div className="navGroup">
-            <p className="sidebarTitle">Overlays</p>
             <a className="navLink" href="#overlays">
               Overlays
             </a>
           </div>
-          <div className="navGroup" style={{ marginTop: 8 }}>
+          <div className="navGroup" style={{ marginTop: 16 }}>
             <p className="sidebarTitle">Shortcuts</p>
             <div
               style={{
@@ -121,6 +167,7 @@ function Playground() {
             </div>
             <FundamentalsSection />
           </div>
+
           <div id="forms" className="category">
             <div className="categoryHeader">
               <h2>Forms</h2>
@@ -128,6 +175,7 @@ function Playground() {
             </div>
             <FormsSection />
           </div>
+
           <div id="navigation" className="category">
             <div className="categoryHeader">
               <h2>Navigation</h2>

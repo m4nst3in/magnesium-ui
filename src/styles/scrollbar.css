@@ -1,0 +1,114 @@
+/* Magnesium — minimal fluid scrollbar
+   6px thin, morphs to 8px on hover/drag with spring.
+   Overlay fade, no layout shift, Linear/Vercel vibe.
+*/
+
+:root {
+  --ui-scrollbar-size: 6px;
+  --ui-scrollbar-thumb: var(--ui-zinc-300);
+  --ui-scrollbar-thumb-hover: var(--ui-zinc-400);
+  --ui-scrollbar-thumb-active: var(--ui-primary);
+}
+
+:root[data-theme='dark'] {
+  --ui-scrollbar-thumb: #3f3f46;
+  --ui-scrollbar-thumb-hover: #52525b;
+  --ui-scrollbar-thumb-active: var(--ui-primary);
+}
+
+/* Smooth but respect motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-scrollbar-thumb) transparent;
+}
+
+@supports (scrollbar-gutter: stable) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* Firefox — overlay fade */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ui-scrollbar-thumb) transparent;
+}
+
+@media (hover: hover) {
+  * {
+    scrollbar-color: transparent transparent;
+  }
+
+  *:hover,
+  *:focus-within {
+    scrollbar-color: var(--ui-scrollbar-thumb) transparent;
+  }
+
+  *:hover::-webkit-scrollbar-thumb,
+  *:focus-within::-webkit-scrollbar-thumb {
+    background-color: var(--ui-scrollbar-thumb);
+  }
+}
+
+/* WebKit — global */
+::-webkit-scrollbar {
+  width: var(--ui-scrollbar-size);
+  height: var(--ui-scrollbar-size);
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-button {
+  background: transparent;
+  border: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--ui-scrollbar-thumb);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  min-height: 32px;
+  min-width: 32px;
+  transition:
+    background-color 180ms ease,
+    border-width 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 180ms ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ui-scrollbar-thumb-hover);
+  border-width: 1px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: var(--ui-scrollbar-thumb-active);
+  border-width: 1px;
+}
+
+/* Dark is already via :root variables — no extra needed, but keep specificity */
+:root[data-theme='dark']::-webkit-scrollbar-thumb {
+  background-color: var(--ui-scrollbar-thumb);
+}
+
+:root[data-theme='dark']::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ui-scrollbar-thumb-hover);
+}
+
+/* Reduce motion — instant */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+}

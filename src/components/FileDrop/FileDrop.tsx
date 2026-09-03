@@ -1,5 +1,7 @@
-import { useId, useRef, useState, type ReactNode, type DragEvent, type KeyboardEvent } from 'react'
+import { type DragEvent, type KeyboardEvent, type ReactNode, useId, useRef, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './FileDrop.module.css'
 
 export type FileIconSize = 'sm' | 'md'
@@ -20,11 +22,17 @@ function detectVariant(name?: string, mime?: string): IconVariant {
     const m = mime.toLowerCase()
     if (m.startsWith('image/')) return 'film'
     if (m.startsWith('video/') || m.startsWith('audio/')) return 'film'
-    if (m.includes('pdf') || m.includes('msword') || m.includes('officedocument.word') || m.includes('text/')) {
+    if (
+      m.includes('pdf') ||
+      m.includes('msword') ||
+      m.includes('officedocument.word') ||
+      m.includes('text/')
+    ) {
       return 'doc'
     }
     if (m.includes('spreadsheet') || m.includes('excel') || m.includes('csv')) return 'grid'
-    if (m.includes('zip') || m.includes('compressed') || m.includes('tar') || m.includes('gzip')) return 'box'
+    if (m.includes('zip') || m.includes('compressed') || m.includes('tar') || m.includes('gzip'))
+      return 'box'
   }
 
   const ext = (() => {
@@ -35,11 +43,17 @@ function detectVariant(name?: string, mime?: string): IconVariant {
     return base.slice(dot + 1).toLowerCase()
   })()
 
-  if (['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp', 'heic', 'heif', 'avif', 'tiff'].includes(ext)) {
+  if (
+    ['jpg', 'jpeg', 'png', 'gif', 'webp', 'svg', 'bmp', 'heic', 'heif', 'avif', 'tiff'].includes(
+      ext
+    )
+  ) {
     return 'film'
   }
 
-  if (['mp4', 'mov', 'avi', 'mkv', 'webm', 'm4v', 'mp3', 'wav', 'flac', 'aac', 'ogg'].includes(ext)) {
+  if (
+    ['mp4', 'mov', 'avi', 'mkv', 'webm', 'm4v', 'mp3', 'wav', 'flac', 'aac', 'ogg'].includes(ext)
+  ) {
     return 'film'
   }
 
@@ -56,14 +70,21 @@ function detectVariant(name?: string, mime?: string): IconVariant {
   }
 
   if (ext) {
-
     return 'generic'
   }
 
   if (raw.includes('pdf')) return 'doc'
   if (raw.includes('sheet') || raw.includes('csv') || raw.includes('xls')) return 'grid'
   if (raw.includes('zip') || raw.includes('rar') || raw.includes('tar')) return 'box'
-  if (raw.includes('mp4') || raw.includes('video') || raw.includes('audio') || raw.includes('image') || raw.includes('png') || raw.includes('jpg') || raw.includes('jpeg')) {
+  if (
+    raw.includes('mp4') ||
+    raw.includes('video') ||
+    raw.includes('audio') ||
+    raw.includes('image') ||
+    raw.includes('png') ||
+    raw.includes('jpg') ||
+    raw.includes('jpeg')
+  ) {
     return 'film'
   }
 
@@ -119,7 +140,16 @@ export function FileIcon({ name, type, size = 'md', className }: FileIconProps) 
         >
           <rect x="2.7" y="1.6" width="10.6" height="12.4" rx="1.3" />
           <path d="M2.7 5.2H13.3M2.7 8.4H13.3M6.2 5.2V14M9.8 5.2V14" />
-          <rect x="3.7" y="2.6" width="2.5" height="1.6" rx="0.5" fill="currentColor" opacity="0.18" stroke="none" />
+          <rect
+            x="3.7"
+            y="2.6"
+            width="2.5"
+            height="1.6"
+            rx="0.5"
+            fill="currentColor"
+            opacity="0.18"
+            stroke="none"
+          />
         </svg>
       ) : variant === 'box' ? (
         <svg
@@ -151,7 +181,12 @@ export function FileIcon({ name, type, size = 'md', className }: FileIconProps) 
           aria-hidden="true"
         >
           <rect x="2.6" y="3.1" width="10.8" height="9.4" rx="1.3" />
-          <path d="M6.1 5.9V10.3L9.9 8.1Z" fill="currentColor" stroke="none" strokeLinejoin="round" />
+          <path
+            d="M6.1 5.9V10.3L9.9 8.1Z"
+            fill="currentColor"
+            stroke="none"
+            strokeLinejoin="round"
+          />
           <path d="M2.6 6.2H13.4M2.6 9.8H13.4" opacity="0.22" />
         </svg>
       )}
@@ -283,7 +318,12 @@ export function FileDrop({
         aria-disabled={disabled ? true : undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={messageId}
-        className={cn(styles.dropzone, dragOver && styles.dragOver, disabled && styles.disabled, error && styles.invalid)}
+        className={cn(
+          styles.dropzone,
+          dragOver && styles.dragOver,
+          disabled && styles.disabled,
+          error && styles.invalid
+        )}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
         onDragEnter={handleDragEnter}
@@ -292,7 +332,14 @@ export function FileDrop({
         onDrop={handleDrop}
       >
         {children ?? (
-          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+          <span
+            style={{
+              display: 'inline-flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 8,
+            }}
+          >
             <span
               style={{
                 width: 36,
@@ -306,7 +353,16 @@ export function FileDrop({
               }}
               aria-hidden="true"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M12 16V3" />
                 <path d="M8 7L12 3L16 7" />
                 <path d="M3 17V19A2 2 0 0 0 5 21H19A2 2 0 0 0 21 19V17" />

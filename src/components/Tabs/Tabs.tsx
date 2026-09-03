@@ -1,12 +1,14 @@
 import {
-  createContext,
-  useContext,
-  useId,
   type ButtonHTMLAttributes,
+  createContext,
   type HTMLAttributes,
   type KeyboardEvent,
+  useContext,
+  useId,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Tabs.module.css'
 
 interface TabsContextValue {
@@ -51,12 +53,20 @@ export function TabsList({ className, onKeyDown, ...rest }: HTMLAttributes<HTMLD
     if (current === -1) return
 
     e.preventDefault()
-    const next = triggers[(current + (e.key === 'ArrowRight' ? 1 : -1) + triggers.length) % triggers.length]
+    const next =
+      triggers[(current + (e.key === 'ArrowRight' ? 1 : -1) + triggers.length) % triggers.length]
     next.focus()
     next.click()
   }
 
-  return <div role="tablist" className={cn(styles.list, className)} onKeyDown={handleKeyDown} {...rest} />
+  return (
+    <div
+      role="tablist"
+      className={cn(styles.list, className)}
+      onKeyDown={handleKeyDown}
+      {...rest}
+    />
+  )
 }
 
 export interface TabsTriggerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -101,4 +111,8 @@ export function TabsPanel({ value, className, ...rest }: TabsPanelProps) {
   )
 }
 
-export const Tabs = Object.assign(TabsRoot, { List: TabsList, Trigger: TabsTrigger, Panel: TabsPanel })
+export const Tabs = Object.assign(TabsRoot, {
+  List: TabsList,
+  Trigger: TabsTrigger,
+  Panel: TabsPanel,
+})

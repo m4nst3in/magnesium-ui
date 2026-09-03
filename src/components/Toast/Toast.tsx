@@ -1,15 +1,17 @@
 import {
   createContext,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type ReactNode,
 } from 'react'
 import { createPortal } from 'react-dom'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Toast.module.css'
 
 export type ToastVariant = 'info' | 'success' | 'warning' | 'danger'
@@ -52,14 +54,14 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       if (leavingIds.current.has(id)) return
       leavingIds.current.add(id)
       setToasts((current) =>
-        current.map((item) => (item.id === id ? { ...item, leaving: true } : item)),
+        current.map((item) => (item.id === id ? { ...item, leaving: true } : item))
       )
       window.setTimeout(() => {
         leavingIds.current.delete(id)
         remove(id)
       }, EXIT_MS)
     },
-    [remove],
+    [remove]
   )
 
   const toast = useCallback((options: ToastOptions) => {
@@ -85,7 +87,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <ToastCard key={item.id} toast={item} onDismiss={dismiss} />
           ))}
         </div>,
-        document.body,
+        document.body
       )}
     </ToastContext.Provider>
   )
@@ -104,7 +106,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
     return () => window.clearTimeout(timer)
   }, [paused, remaining, toast.id, onDismiss, toast.leaving])
 
-  const pause = () => {
+  const _pause = () => {
     setRemaining((current) => Math.max(0, current - (Date.now() - startedAt.current)))
     setPaused(true)
   }
@@ -112,11 +114,7 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
   return (
     <div
       role="status"
-      className={cn(
-        styles.toast,
-        styles[toast.variant ?? 'info'],
-        toast.leaving && styles.leaving,
-      )}
+      className={cn(styles.toast, styles[toast.variant ?? 'info'], toast.leaving && styles.leaving)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -130,7 +128,12 @@ function ToastCard({ toast, onDismiss }: { toast: ToastItem; onDismiss: (id: num
           aria-label="Fechar"
         >
           <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-            <path d="M3 3l6 6m0-6l-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            <path
+              d="M3 3l6 6m0-6l-6 6"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
           </svg>
         </button>
       </div>

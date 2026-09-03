@@ -1,5 +1,7 @@
-import { useId, useState, type ReactNode } from 'react'
+import { type ReactNode, useId, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './RadioGroup.module.css'
 
 export interface RadioOption {

@@ -1,5 +1,7 @@
-import { useState, type HTMLAttributes } from 'react'
+import { type HTMLAttributes, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Avatar.module.css'
 
 export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {

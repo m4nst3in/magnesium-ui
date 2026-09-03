@@ -6,10 +6,7 @@ export default defineConfig({
   server: {
     watch: { usePolling: true },
   },
-  plugins: [
-    react(),
-    dts({ include: 'src', exclude: ['src/demo/**/*'], entryRoot: 'src' }),
-  ],
+  plugins: [react(), dts({ include: 'src', exclude: ['src/demo/**/*'], entryRoot: 'src' })],
   build: {
     sourcemap: true,
     minify: false,

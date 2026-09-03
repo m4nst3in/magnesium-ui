@@ -1,7 +1,17 @@
 import { useState } from 'react'
-import { Alert, Avatar, Badge, Button, Card, CopyButton, EmptyState, Progress, Skeleton } from '../../index'
-import { useToast } from '../../index'
 
+import {
+  Alert,
+  Avatar,
+  Badge,
+  Button,
+  Card,
+  CopyButton,
+  EmptyState,
+  Progress,
+  Skeleton,
+  useToast,
+} from '../../index'
 export function FundamentalsSection() {
   const { toast } = useToast()
   const [simLoading, setSimLoading] = useState(false)
@@ -146,18 +156,53 @@ export function FundamentalsSection() {
         <Card>
           <Card.Content>
             <div className="stack" style={{ gap: 16, maxWidth: 520 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: 10, borderRadius: 10, background: 'var(--ui-subtle)', border: '1px solid var(--ui-subtle-border)' }}>
-                <code style={{ flex: 1, fontSize: 13, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', color: 'var(--ui-fg)' }}>npm i @m4nst3in/magnesium-ui</code>
-                <CopyButton value="npm i @m4nst3in/magnesium-ui" aria-label="Copy command" onCopy={() => toast({ title: 'Copied!' })} />
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 10,
+                  padding: 10,
+                  borderRadius: 10,
+                  background: 'var(--ui-subtle)',
+                  border: '1px solid var(--ui-subtle-border)',
+                }}
+              >
+                <code
+                  style={{
+                    flex: 1,
+                    fontSize: 13,
+                    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+                    color: 'var(--ui-fg)',
+                  }}
+                >
+                  npm i @m4nst3in/magnesium-ui
+                </code>
+                <CopyButton
+                  value="npm i @m4nst3in/magnesium-ui"
+                  aria-label="Copy command"
+                  onCopy={() => toast({ title: 'Copied!' })}
+                />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                <span style={{ flex: 1, fontSize: 13, padding: '8px 10px', borderRadius: 8, background: 'var(--ui-subtle)', border: '1px solid var(--ui-subtle-border)', fontFamily: 'ui-monospace, Menlo, monospace' }}>
+                <span
+                  style={{
+                    flex: 1,
+                    fontSize: 13,
+                    padding: '8px 10px',
+                    borderRadius: 8,
+                    background: 'var(--ui-subtle)',
+                    border: '1px solid var(--ui-subtle-border)',
+                    fontFamily: 'ui-monospace, Menlo, monospace',
+                  }}
+                >
                   sk_live_51Hx...3a9f
                 </span>
                 <CopyButton value="sk_live_51Hx...3a9f" aria-label="Copy API key" />
                 <CopyButton value="super-secret-123" size="md" aria-label="Copy large" />
               </div>
-              <p style={{ margin: 0, fontSize: 12, color: 'var(--ui-muted)' }}>28px (sm) and 32px (md) — turns into green check for 1.8s, double click is safe.</p>
+              <p style={{ margin: 0, fontSize: 12, color: 'var(--ui-muted)' }}>
+                28px (sm) and 32px (md) — turns into green check for 1.8s, double click is safe.
+              </p>
             </div>
           </Card.Content>
         </Card>

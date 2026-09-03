@@ -1,5 +1,7 @@
 import type { HTMLAttributes } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Progress.module.css'
 
 export interface ProgressProps extends HTMLAttributes<HTMLDivElement> {

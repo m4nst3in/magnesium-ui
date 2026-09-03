@@ -1,14 +1,16 @@
 import {
+  type ButtonHTMLAttributes,
   createContext,
+  forwardRef,
+  type HTMLAttributes,
+  type ReactNode,
   useContext,
   useId,
   useState,
-  forwardRef,
-  type ButtonHTMLAttributes,
-  type HTMLAttributes,
-  type ReactNode,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Accordion.module.css'
 
 interface CollapsibleContextValue {
@@ -34,7 +36,7 @@ export interface CollapsibleProps extends HTMLAttributes<HTMLDivElement> {
 
 const CollapsibleRoot = forwardRef<HTMLDivElement, CollapsibleProps>(function CollapsibleRoot(
   { open: controlledOpen, defaultOpen = false, onOpenChange, className, children, ...rest },
-  ref,
+  ref
 ) {
   const [internalOpen, setInternalOpen] = useState(defaultOpen)
   const contentId = useId()
@@ -98,7 +100,7 @@ const CollapsibleTrigger = forwardRef<HTMLButtonElement, CollapsibleTriggerProps
         </span>
       </button>
     )
-  },
+  }
 )
 
 export interface CollapsibleContentProps extends HTMLAttributes<HTMLDivElement> {
@@ -122,7 +124,7 @@ const CollapsibleContent = forwardRef<HTMLDivElement, CollapsibleContentProps>(
         </div>
       </div>
     )
-  },
+  }
 )
 
 export const Collapsible = Object.assign(CollapsibleRoot, {
@@ -182,7 +184,7 @@ const AccordionRoot = forwardRef<HTMLDivElement, AccordionProps>(function Accord
     children,
     ...rest
   },
-  ref,
+  ref
 ) {
   const isControlled = controlledValue !== undefined
 
@@ -242,7 +244,7 @@ export interface AccordionItemProps extends HTMLAttributes<HTMLDivElement> {
 
 const AccordionItem = forwardRef<HTMLDivElement, AccordionItemProps>(function AccordionItem(
   { value, className, children, ...rest },
-  ref,
+  ref
 ) {
   const { openValues, toggle } = useAccordion()
   const open = openValues.includes(value)
@@ -306,7 +308,7 @@ const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
         </span>
       </button>
     )
-  },
+  }
 )
 
 export interface AccordionContentProps extends HTMLAttributes<HTMLDivElement> {
@@ -330,7 +332,7 @@ const AccordionContent = forwardRef<HTMLDivElement, AccordionContentProps>(
         </div>
       </div>
     )
-  },
+  }
 )
 
 export const Accordion = Object.assign(AccordionRoot, {

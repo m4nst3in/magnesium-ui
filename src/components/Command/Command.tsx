@@ -1,7 +1,10 @@
 import {
   createContext,
   forwardRef,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
   isValidElement,
+  type ReactNode,
   useCallback,
   useContext,
   useEffect,
@@ -9,13 +12,12 @@ import {
   useMemo,
   useRef,
   useState,
-  type HTMLAttributes,
-  type InputHTMLAttributes,
-  type ReactNode,
 } from 'react'
 import { createPortal } from 'react-dom'
-import { cn } from '../../utils/cn'
+
 import { lockBodyScroll, unlockBodyScroll } from '../../utils/bodyScrollLock'
+import { cn } from '../../utils/cn'
+
 import styles from './Command.module.css'
 
 export interface KbdProps extends HTMLAttributes<HTMLElement> {
@@ -113,7 +115,7 @@ function CommandRoot({ open, onClose, placeholder, className, children }: Comman
 
   useEffect(() => {
     setActiveIndex(0)
-  }, [filter])
+  }, [])
 
   useEffect(() => {
     if (activeIndex >= visibleIds.length) setActiveIndex(0)
@@ -195,7 +197,7 @@ function CommandRoot({ open, onClose, placeholder, className, children }: Comman
         <CommandContext.Provider value={ctx}>{children}</CommandContext.Provider>
       </div>
     </div>,
-    document.body,
+    document.body
   )
 }
 
@@ -204,7 +206,15 @@ export const CommandInput = forwardRef<HTMLInputElement, InputHTMLAttributes<HTM
     const ctx = useCommandContext()
 
     if (!ctx) {
-      return <input ref={ref} className={cn(styles.inputStandalone, className)} placeholder={placeholder} onChange={onChange} {...rest} />
+      return (
+        <input
+          ref={ref}
+          className={cn(styles.inputStandalone, className)}
+          placeholder={placeholder}
+          onChange={onChange}
+          {...rest}
+        />
+      )
     }
     const ph = placeholder ?? ctx.placeholder ?? 'Search…'
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -242,7 +252,7 @@ export const CommandInput = forwardRef<HTMLInputElement, InputHTMLAttributes<HTM
         />
       </div>
     )
-  },
+  }
 )
 
 export const CommandList = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
@@ -252,7 +262,7 @@ export const CommandList = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElem
         {children}
       </div>
     )
-  },
+  }
 )
 
 export interface CommandEmptyProps extends HTMLAttributes<HTMLDivElement> {
@@ -292,7 +302,16 @@ export interface CommandItemProps extends Omit<HTMLAttributes<HTMLDivElement>, '
   children: ReactNode
 }
 
-export function CommandItem({ value, onSelect, icon, shortcut, children, className, onClick, ...rest }: CommandItemProps) {
+export function CommandItem({
+  value,
+  onSelect,
+  icon,
+  shortcut,
+  children,
+  className,
+  onClick,
+  ...rest
+}: CommandItemProps) {
   const ctx = useCommandContext()
   const id = useId()
   const text = getItemText(value, children)

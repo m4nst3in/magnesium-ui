@@ -1,5 +1,7 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Tooltip.module.css'
 
 export type TooltipSide = 'top' | 'right' | 'bottom' | 'left'

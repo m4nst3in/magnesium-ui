@@ -1,5 +1,7 @@
-import { forwardRef, useId, type InputHTMLAttributes, type ReactNode } from 'react'
+import { forwardRef, type InputHTMLAttributes, type ReactNode, useId } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Checkbox.module.css'
 
 export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -8,7 +10,7 @@ export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Checkbox(
   { label, id, className, ...rest },
-  ref,
+  ref
 ) {
   const autoId = useId()
   const inputId = id ?? autoId

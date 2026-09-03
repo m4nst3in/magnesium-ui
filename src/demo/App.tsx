@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+
 import { Button, ToastProvider } from '../index'
-import { FundamentalsSection } from './sections/Fundamentals'
 import { FormsSection } from './sections/Forms'
+import { FundamentalsSection } from './sections/Fundamentals'
 import { NavigationSection } from './sections/Navigation'
 import { OverlaysSection } from './sections/Overlays'
 
@@ -63,7 +64,15 @@ function Playground() {
           </div>
           <div className="navGroup" style={{ marginTop: 8 }}>
             <p className="sidebarTitle">Shortcuts</p>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', fontSize: 12, color: 'var(--ui-muted)' }}>
+            <div
+              style={{
+                display: 'flex',
+                gap: 6,
+                alignItems: 'center',
+                fontSize: 12,
+                color: 'var(--ui-muted)',
+              }}
+            >
               <span
                 style={{
                   display: 'inline-flex',

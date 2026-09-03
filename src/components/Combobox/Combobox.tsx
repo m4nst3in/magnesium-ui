@@ -1,12 +1,7 @@
-import {
-  useEffect,
-  useId,
-  useRef,
-  useState,
-  type KeyboardEvent,
-  type ReactNode,
-} from 'react'
+import { type KeyboardEvent, type ReactNode, useEffect, useId, useRef, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Combobox.module.css'
 
 export interface ComboboxOption {
@@ -72,7 +67,7 @@ export function Combobox({
     ? options.filter(
         (opt) =>
           normalize(String(opt.label)).includes(normalize(query)) ||
-          normalize(opt.value).includes(normalize(query)),
+          normalize(opt.value).includes(normalize(query))
       )
     : options
 

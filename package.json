@@ -22,6 +22,10 @@
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check --write .",
+    "check:ci": "biome ci .",
     "prepare": "npm run build"
   },
   "peerDependencies": {
@@ -29,6 +33,7 @@
     "react-dom": ">=18"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.11",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.5.0",

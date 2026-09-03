@@ -67,7 +67,9 @@
   background: transparent;
   color: var(--ui-muted);
   cursor: pointer;
-  transition: background-color var(--ui-duration) ease, color var(--ui-duration) ease;
+  transition:
+    background-color var(--ui-duration) ease,
+    color var(--ui-duration) ease;
 }
 
 .close:hover {

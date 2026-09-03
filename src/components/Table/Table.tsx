@@ -4,14 +4,16 @@ import {
   type TdHTMLAttributes,
   type ThHTMLAttributes,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Table.module.css'
 
 export type TableProps = HTMLAttributes<HTMLTableElement>
 
 export const TableRoot = forwardRef<HTMLTableElement, TableProps>(function Table(
   { className, ...rest },
-  ref,
+  ref
 ) {
   return (
     <div className={styles.scroll}>
@@ -25,14 +27,14 @@ export type TableHeaderProps = HTMLAttributes<HTMLTableSectionElement>
 export const TableHeader = forwardRef<HTMLTableSectionElement, TableHeaderProps>(
   function TableHeader({ className, ...rest }, ref) {
     return <thead ref={ref} className={cn(styles.header, className)} {...rest} />
-  },
+  }
 )
 
 export type TableBodyProps = HTMLAttributes<HTMLTableSectionElement>
 
 export const TableBody = forwardRef<HTMLTableSectionElement, TableBodyProps>(function TableBody(
   { className, ...rest },
-  ref,
+  ref
 ) {
   return <tbody ref={ref} className={cn(styles.body, className)} {...rest} />
 })
@@ -44,7 +46,7 @@ export type TableRowProps = HTMLAttributes<HTMLTableRowElement> & {
 
 export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(function TableRow(
   { className, selected, interactive, tabIndex, onKeyDown, ...rest },
-  ref,
+  ref
 ) {
   const isInteractive = interactive ?? !!rest.onClick
   return (
@@ -72,7 +74,7 @@ export type TableThProps = ThHTMLAttributes<HTMLTableCellElement> & {
 
 export const TableTh = forwardRef<HTMLTableCellElement, TableThProps>(function TableTh(
   { className, numeric, ...rest },
-  ref,
+  ref
 ) {
   return (
     <th
@@ -90,7 +92,7 @@ export type TableTdProps = TdHTMLAttributes<HTMLTableCellElement> & {
 
 export const TableTd = forwardRef<HTMLTableCellElement, TableTdProps>(function TableTd(
   { className, numeric, ...rest },
-  ref,
+  ref
 ) {
   return (
     <td
@@ -107,7 +109,7 @@ export type TableCaptionProps = HTMLAttributes<HTMLTableCaptionElement>
 export const TableCaption = forwardRef<HTMLTableCaptionElement, TableCaptionProps>(
   function TableCaption({ className, ...rest }, ref) {
     return <caption ref={ref} className={cn(styles.caption, className)} {...rest} />
-  },
+  }
 )
 
 export const Table = Object.assign(TableRoot, {

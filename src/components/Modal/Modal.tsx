@@ -1,7 +1,7 @@
-import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
+import { type MouseEvent, type ReactNode, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import { cn } from '../../utils/cn'
 import { lockBodyScroll, unlockBodyScroll } from '../../utils/bodyScrollLock'
+import { cn } from '../../utils/cn'
 import styles from './Modal.module.css'
 export interface ModalProps {
   open: boolean
@@ -16,7 +16,15 @@ export interface ModalProps {
 const FOCUSABLE =
   'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export function Modal({ open, onClose, title, footer, size = 'md', className, children }: ModalProps) {
+export function Modal({
+  open,
+  onClose,
+  title,
+  footer,
+  size = 'md',
+  className,
+  children,
+}: ModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const previouslyFocused = useRef<HTMLElement | null>(null)
 
@@ -86,7 +94,12 @@ export function Modal({ open, onClose, title, footer, size = 'md', className, ch
           {title && <h2 className={styles.title}>{title}</h2>}
           <button type="button" className={styles.close} onClick={onClose} aria-label="Fechar">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-              <path d="M3.5 3.5l7 7m0-7l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <path
+                d="M3.5 3.5l7 7m0-7l-7 7"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
@@ -94,6 +107,6 @@ export function Modal({ open, onClose, title, footer, size = 'md', className, ch
         {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>,
-    document.body,
+    document.body
   )
 }

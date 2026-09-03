@@ -46,8 +46,8 @@
 }
 
 .dragOver {
-  background: var(--ui-hover) !important;
-  border-color: var(--ui-primary) !important;
+  background: var(--ui-hover);
+  border-color: var(--ui-primary);
   border-style: dashed;
   transform: scale(1.005);
   box-shadow: var(--ui-shadow-sm);

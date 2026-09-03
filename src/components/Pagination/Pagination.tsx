@@ -1,5 +1,7 @@
-import { type ButtonHTMLAttributes, type HTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes, HTMLAttributes } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Pagination.module.css'
 
 function getPages(current: number, total: number, sibling = 1): (number | 'ellipsis')[] {
@@ -50,7 +52,17 @@ export function Pagination({
               aria-label="Página anterior"
               onClick={() => onChange(current - 1)}
             >
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <path d="M10 3L5 8L10 13" />
               </svg>
               <span className={styles.navLabel}>Anterior</span>
@@ -75,7 +87,7 @@ export function Pagination({
                 {p}
               </button>
             </li>
-          ),
+          )
         )}
 
         {showPrevNext && (
@@ -88,7 +100,17 @@ export function Pagination({
               onClick={() => onChange(current + 1)}
             >
               <span className={styles.navLabel}>Próxima</span>
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <path d="M6 3L11 8L6 13" />
               </svg>
             </button>
@@ -104,5 +126,12 @@ export type PaginationItemProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 export function PaginationItem({ active, className, ...rest }: PaginationItemProps) {
-  return <button type="button" className={cn(styles.item, active && styles.active, className)} aria-current={active ? 'page' : undefined} {...rest} />
+  return (
+    <button
+      type="button"
+      className={cn(styles.item, active && styles.active, className)}
+      aria-current={active ? 'page' : undefined}
+      {...rest}
+    />
+  )
 }

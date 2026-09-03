@@ -1,6 +1,8 @@
-import { forwardRef, type ButtonHTMLAttributes } from 'react'
+import { type ButtonHTMLAttributes, forwardRef } from 'react'
+
 import { cn } from '../../utils/cn'
 import { Spinner } from '../Spinner/Spinner'
+
 import styles from './Button.module.css'
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
@@ -14,8 +16,17 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = 'primary', size = 'md', loading = false, fullWidth = false, disabled, className, children, ...rest },
-  ref,
+  {
+    variant = 'primary',
+    size = 'md',
+    loading = false,
+    fullWidth = false,
+    disabled,
+    className,
+    children,
+    ...rest
+  },
+  ref
 ) {
   return (
     <button
@@ -27,7 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         styles[size],
         loading && styles.loading,
         fullWidth && styles.fullWidth,
-        className,
+        className
       )}
       disabled={disabled || loading}
       aria-busy={loading || undefined}

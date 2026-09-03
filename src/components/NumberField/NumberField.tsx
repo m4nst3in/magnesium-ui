@@ -1,14 +1,16 @@
 import {
   forwardRef,
+  type KeyboardEvent,
   useCallback,
   useEffect,
   useId,
   useMemo,
   useRef,
   useState,
-  type KeyboardEvent,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './NumberField.module.css'
 
 export interface NumberFieldProps {
@@ -68,7 +70,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
     id,
     className,
   },
-  ref,
+  ref
 ) {
   const autoId = useId()
   const inputId = id ?? autoId
@@ -76,10 +78,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
 
   const isControlled = value !== undefined
 
-  const clampSnap = useCallback(
-    (n: number) => snap(n, min, max, step),
-    [min, max, step],
-  )
+  const clampSnap = useCallback((n: number) => snap(n, min, max, step), [min, max, step])
 
   const [internal, setInternal] = useState<number | undefined>(() => {
     if (defaultValue !== undefined) return clampSnap(defaultValue)
@@ -104,7 +103,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
       if (formatter) return formatter.format(n)
       return String(n)
     },
-    [formatter],
+    [formatter]
   )
 
   const [editing, setEditing] = useState(false)
@@ -116,7 +115,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
       if (!isControlled) setInternal(snapped)
       onValueChange?.(snapped)
     },
-    [isControlled, clampSnap, onValueChange],
+    [isControlled, clampSnap, onValueChange]
   )
 
   const currentRef = useRef<number | undefined>(current)
@@ -135,11 +134,10 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
     (delta: number) => {
       if (disabled) return
       const cur = currentRef.current
-      const base = cur ?? (min ?? 0)
+      const base = cur ?? min ?? 0
 
       let nextRaw: number
       if (cur === undefined) {
-
         nextRaw = base
 
         if (min === undefined) nextRaw = base + delta
@@ -151,13 +149,12 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
       const { atMin, atMax } = getAtLimits()
       if ((delta < 0 && atMin) || (delta > 0 && atMax)) return
       if (cur !== undefined && next === cur) {
-
         return
       }
       if (!isControlled) setInternal(next)
       onValueChange?.(next)
     },
-    [disabled, min, clampSnap, isControlled, onValueChange],
+    [disabled, min, clampSnap, isControlled, onValueChange, getAtLimits]
   )
 
   const intervalRef = useRef<number | null>(null)
@@ -194,15 +191,13 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
     setEditing(false)
     const trimmed = rawInput.trim()
     if (trimmed === '' || trimmed === '-' || trimmed === '.' || trimmed === '-.') {
-
       if (!isControlled) {
-
         if (trimmed === '') setInternal(undefined)
       }
       return
     }
 
-    const normalized = trimmed.replace(/[^0-9.\-]/g, '')
+    const normalized = trimmed.replace(/[^0-9.-]/g, '')
     const parsed = Number.parseFloat(normalized)
     if (Number.isNaN(parsed)) return
     commit(parsed)
@@ -233,7 +228,6 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
         if (min !== undefined) {
           commit(min)
         } else {
-
         }
         return
       case 'End':
@@ -259,11 +253,7 @@ export const NumberField = forwardRef<HTMLInputElement, NumberFieldProps>(functi
     }
   })()
 
-  const displayValue = editing
-    ? rawInput
-    : current !== undefined
-      ? formatValue(current)
-      : ''
+  const displayValue = editing ? rawInput : current !== undefined ? formatValue(current) : ''
 
   return (
     <div className={cn(styles.field, className)}>

@@ -1,5 +1,7 @@
-import { forwardRef, type ButtonHTMLAttributes } from 'react'
+import { type ButtonHTMLAttributes, forwardRef } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Switch.module.css'
 
 export interface SwitchProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,7 +11,7 @@ export interface SwitchProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Switch = forwardRef<HTMLButtonElement, SwitchProps>(function Switch(
   { checked, onCheckedChange, className, onClick, disabled, ...rest },
-  ref,
+  ref
 ) {
   return (
     <button

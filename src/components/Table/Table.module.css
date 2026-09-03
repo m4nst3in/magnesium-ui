@@ -1,5 +1,3 @@
-
-
 .scroll {
   overflow: auto;
   border: 1px solid var(--ui-border);
@@ -124,14 +122,30 @@
   animation: rowIn 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.body .row:nth-child(1) { animation-delay: 0ms; }
-.body .row:nth-child(2) { animation-delay: 28ms; }
-.body .row:nth-child(3) { animation-delay: 56ms; }
-.body .row:nth-child(4) { animation-delay: 84ms; }
-.body .row:nth-child(5) { animation-delay: 112ms; }
-.body .row:nth-child(6) { animation-delay: 140ms; }
-.body .row:nth-child(7) { animation-delay: 168ms; }
-.body .row:nth-child(8) { animation-delay: 196ms; }
+.body .row:nth-child(1) {
+  animation-delay: 0ms;
+}
+.body .row:nth-child(2) {
+  animation-delay: 28ms;
+}
+.body .row:nth-child(3) {
+  animation-delay: 56ms;
+}
+.body .row:nth-child(4) {
+  animation-delay: 84ms;
+}
+.body .row:nth-child(5) {
+  animation-delay: 112ms;
+}
+.body .row:nth-child(6) {
+  animation-delay: 140ms;
+}
+.body .row:nth-child(7) {
+  animation-delay: 168ms;
+}
+.body .row:nth-child(8) {
+  animation-delay: 196ms;
+}
 
 @keyframes rowIn {
   from {

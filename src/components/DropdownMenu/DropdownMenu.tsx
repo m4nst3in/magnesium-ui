@@ -1,18 +1,20 @@
 import {
+  type ButtonHTMLAttributes,
   cloneElement,
   createContext,
+  type HTMLAttributes,
   isValidElement,
+  type MouseEvent,
+  type ReactElement,
+  type ReactNode,
   useContext,
   useEffect,
   useRef,
   useState,
-  type ButtonHTMLAttributes,
-  type HTMLAttributes,
-  type MouseEvent,
-  type ReactElement,
-  type ReactNode,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './DropdownMenu.module.css'
 
 export interface DropdownMenuProps {

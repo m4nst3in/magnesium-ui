@@ -1,5 +1,3 @@
-
-
 .collapsible {
   width: 100%;
 }
@@ -71,10 +69,6 @@
 .trigger:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-}
-
-.accordionTrigger {
-
 }
 
 .triggerLabel {

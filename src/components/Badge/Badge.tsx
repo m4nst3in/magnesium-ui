@@ -1,5 +1,7 @@
 import type { HTMLAttributes } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Badge.module.css'
 
 export type BadgeVariant = 'neutral' | 'brand' | 'success' | 'warning' | 'danger'

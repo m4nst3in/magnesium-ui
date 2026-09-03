@@ -1,5 +1,7 @@
-import { forwardRef, useId, type TextareaHTMLAttributes } from 'react'
+import { forwardRef, type TextareaHTMLAttributes, useId } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Textarea.module.css'
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -10,7 +12,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
   { label, hint, error, id, className, ...rest },
-  ref,
+  ref
 ) {
   const autoId = useId()
   const textareaId = id ?? autoId

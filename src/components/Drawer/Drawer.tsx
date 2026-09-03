@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
+import { type MouseEvent, type ReactNode, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { cn } from '../../utils/cn'
+
 import { lockBodyScroll, unlockBodyScroll } from '../../utils/bodyScrollLock'
+import { cn } from '../../utils/cn'
+
 import styles from './Drawer.module.css'
 
 export type DrawerSide = 'left' | 'right' | 'top' | 'bottom'
@@ -47,9 +49,7 @@ export function Drawer({
   useEffect(() => {
     if (open) {
       setMounted(true)
-      const id = requestAnimationFrame(() =>
-        requestAnimationFrame(() => setVisible(true)),
-      )
+      const id = requestAnimationFrame(() => requestAnimationFrame(() => setVisible(true)))
       return () => cancelAnimationFrame(id)
     }
     if (mounted) {
@@ -60,7 +60,6 @@ export function Drawer({
   }, [open, mounted])
 
   useEffect(() => {
-
     previouslyFocused.current = document.activeElement as HTMLElement | null
 
     const sheet = sheetRef.current
@@ -75,7 +74,7 @@ export function Drawer({
       }
       if (e.key === 'Tab' && sheet) {
         const nodes = Array.from(sheet.querySelectorAll<HTMLElement>(FOCUSABLE)).filter(
-          (el) => el.offsetParent !== null,
+          (el) => el.offsetParent !== null
         )
         if (nodes.length === 0) {
           e.preventDefault()
@@ -101,7 +100,7 @@ export function Drawer({
       unlockBodyScroll()
       queueMicrotask(() => previouslyFocused.current?.focus?.())
     }
-  }, [mounted, visible, onClose])
+  }, [onClose])
 
   if (!mounted) return null
 
@@ -126,7 +125,13 @@ export function Drawer({
         tabIndex={-1}
         data-side={side}
         data-visible={visible ? 'true' : 'false'}
-        className={cn(styles.sheet, styles[side], sizeClass, visible && styles.sheetVisible, className)}
+        className={cn(
+          styles.sheet,
+          styles[side],
+          sizeClass,
+          visible && styles.sheetVisible,
+          className
+        )}
         onMouseDown={(e) => e.stopPropagation()}
       >
         {(title || description) && (
@@ -144,15 +149,36 @@ export function Drawer({
               )}
             </div>
             <button type="button" className={styles.close} onClick={onClose} aria-label="Fechar">
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+              >
                 <path d="M4 4L12 12M12 4L4 12" />
               </svg>
             </button>
           </div>
         )}
         {!title && !description && (
-          <button type="button" className={cn(styles.close, styles.closeAbs)} onClick={onClose} aria-label="Fechar">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+          <button
+            type="button"
+            className={cn(styles.close, styles.closeAbs)}
+            onClick={onClose}
+            aria-label="Fechar"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 16 16"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.6"
+              strokeLinecap="round"
+            >
               <path d="M4 4L12 12M12 4L4 12" />
             </svg>
           </button>
@@ -161,7 +187,7 @@ export function Drawer({
         {footer && <div className={styles.footer}>{footer}</div>}
       </div>
     </div>,
-    document.body,
+    document.body
   )
 }
 

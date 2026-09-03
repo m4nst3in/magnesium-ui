@@ -1,5 +1,7 @@
-import { forwardRef, useId, type InputHTMLAttributes } from 'react'
+import { forwardRef, type InputHTMLAttributes, useId } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Input.module.css'
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -10,7 +12,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { label, hint, error, id, className, ...rest },
-  ref,
+  ref
 ) {
   const autoId = useId()
   const inputId = id ?? autoId

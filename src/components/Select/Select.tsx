@@ -1,5 +1,7 @@
-import { useEffect, useId, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
+import { type KeyboardEvent, type ReactNode, useEffect, useId, useRef, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Select.module.css'
 
 export interface SelectOption {
@@ -191,7 +193,14 @@ export function Select({
               >
                 <span>{opt.label}</span>
                 {opt.value === current && (
-                  <svg className={styles.check} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <svg
+                    className={styles.check}
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    aria-hidden="true"
+                  >
                     <path
                       d="M3 7.5l2.5 2.5L11 4.5"
                       stroke="currentColor"

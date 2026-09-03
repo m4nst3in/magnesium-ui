@@ -1,5 +1,3 @@
-
-
 .overlay {
   position: fixed;
   inset: 0;
@@ -76,7 +74,7 @@
 }
 
 .sheetVisible {
-  transform: translateX(0) translateY(0) !important;
+  transform: translateX(0) translateY(0);
 }
 
 .smH {

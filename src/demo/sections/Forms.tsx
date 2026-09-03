@@ -1,7 +1,22 @@
-import { useState, useEffect } from 'react'
-import { Badge, Button, Card, Checkbox, Combobox, DatePicker, FileDrop, FileIcon, Input, NumberField, RadioGroup, Select, Slider, Switch, Textarea } from '../../index'
-import { useToast } from '../../index'
+import { useEffect, useState } from 'react'
 
+import {
+  Button,
+  Card,
+  Checkbox,
+  Combobox,
+  DatePicker,
+  FileDrop,
+  FileIcon,
+  Input,
+  NumberField,
+  RadioGroup,
+  Select,
+  Slider,
+  Switch,
+  Textarea,
+  useToast,
+} from '../../index'
 export function FormsSection() {
   const { toast } = useToast()
   const [terms, setTerms] = useState(false)
@@ -48,7 +63,11 @@ export function FormsSection() {
           <Textarea label="Message" placeholder="Write something…" />
         </div>
         <div className="row">
-          <Checkbox label="I accept the terms" checked={terms} onChange={(e) => setTerms(e.target.checked)} />
+          <Checkbox
+            label="I accept the terms"
+            checked={terms}
+            onChange={(e) => setTerms(e.target.checked)}
+          />
           <Checkbox label="Disabled" disabled />
           <span className="row" style={{ gap: 8 }}>
             <Switch checked={notify} onCheckedChange={setNotify} />
@@ -72,13 +91,40 @@ export function FormsSection() {
         <h2>NumberField</h2>
         <Card>
           <Card.Content>
-            <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}>
-              <NumberField label="Quantity" value={qty} onValueChange={setQty} min={0} max={10} step={1} hint="0–10, step 1" />
-              <NumberField label="Price" defaultValue={49.9} min={0} max={999} step={0.5} formatOptions={{ style: 'currency', currency: 'BRL' }} hint="step 0.50, formats BRL" />
+            <div
+              className="grid"
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 20 }}
+            >
+              <NumberField
+                label="Quantity"
+                value={qty}
+                onValueChange={setQty}
+                min={0}
+                max={10}
+                step={1}
+                hint="0–10, step 1"
+              />
+              <NumberField
+                label="Price"
+                defaultValue={49.9}
+                min={0}
+                max={999}
+                step={0.5}
+                formatOptions={{ style: 'currency', currency: 'BRL' }}
+                hint="step 0.50, formats BRL"
+              />
               <NumberField label="Disabled" defaultValue={2} disabled hint="No interaction" />
-              <NumberField label="With error" defaultValue={150} max={100} error="Above maximum (100)" />
+              <NumberField
+                label="With error"
+                defaultValue={150}
+                max={100}
+                error="Above maximum (100)"
+              />
             </div>
-            <p style={{ margin: '14px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>Controlled/uncontrolled, clamp + snap, stepper with hold, keyboard ↑↓ PgUp/Dn Home/End.</p>
+            <p style={{ margin: '14px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>
+              Controlled/uncontrolled, clamp + snap, stepper with hold, keyboard ↑↓ PgUp/Dn
+              Home/End.
+            </p>
           </Card.Content>
         </Card>
       </section>
@@ -119,7 +165,13 @@ export function FormsSection() {
               />
               <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', gap: 24 }}>
                 <Slider label="Disabled" defaultValue={30} disabled showValue />
-                <Slider label="Limit" defaultValue={88} max={80} error="Above allowed limit" showValue />
+                <Slider
+                  label="Limit"
+                  defaultValue={88}
+                  max={80}
+                  error="Above allowed limit"
+                  showValue
+                />
               </div>
               <Slider defaultValue={50} step={5} hint="No label · step 5" />
             </div>
@@ -145,7 +197,11 @@ export function FormsSection() {
                     prev.forEach((p) => p.preview && URL.revokeObjectURL(p.preview))
                     return next
                   })
-                  if (files.length) toast({ title: `${files.length} file(s)`, description: files.map((f) => f.name).join(', ') })
+                  if (files.length)
+                    toast({
+                      title: `${files.length} file(s)`,
+                      description: files.map((f) => f.name).join(', '),
+                    })
                 }}
                 hint="Drag images or click — auto preview for JPG/PNG/WebP"
               />
@@ -169,16 +225,47 @@ export function FormsSection() {
                         <img
                           src={f.preview}
                           alt={f.name}
-                          style={{ width: 44, height: 44, borderRadius: 8, objectFit: 'cover', flexShrink: 0, border: '1px solid var(--ui-subtle-border)' }}
+                          style={{
+                            width: 44,
+                            height: 44,
+                            borderRadius: 8,
+                            objectFit: 'cover',
+                            flexShrink: 0,
+                            border: '1px solid var(--ui-subtle-border)',
+                          }}
                         />
                       ) : (
-                        <span style={{ width: 44, height: 44, display: 'grid', placeItems: 'center', borderRadius: 8, background: 'var(--ui-subtle)', border: '1px solid var(--ui-subtle-border)', flexShrink: 0 }}>
+                        <span
+                          style={{
+                            width: 44,
+                            height: 44,
+                            display: 'grid',
+                            placeItems: 'center',
+                            borderRadius: 8,
+                            background: 'var(--ui-subtle)',
+                            border: '1px solid var(--ui-subtle-border)',
+                            flexShrink: 0,
+                          }}
+                        >
                           <FileIcon name={f.name} size="sm" />
                         </span>
                       )}
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.name}</div>
-                        <div style={{ fontSize: 11.5, color: 'var(--ui-muted)' }}>{(f.size / 1024).toFixed(1)} KB</div>
+                        <div
+                          style={{
+                            fontSize: 13,
+                            fontWeight: 500,
+                            letterSpacing: '-0.01em',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          {f.name}
+                        </div>
+                        <div style={{ fontSize: 11.5, color: 'var(--ui-muted)' }}>
+                          {(f.size / 1024).toFixed(1)} KB
+                        </div>
                       </div>
                     </div>
                   ))}

@@ -1,7 +1,17 @@
-import { useState, useEffect } from 'react'
-import { Button, Card, Command, Drawer, Dropdown, FileIcon, Kbd, Modal, Tooltip } from '../../index'
-import { useToast } from '../../index'
+import { useEffect, useState } from 'react'
 
+import {
+  Button,
+  Card,
+  Command,
+  Drawer,
+  Dropdown,
+  FileIcon,
+  Kbd,
+  Modal,
+  Tooltip,
+  useToast,
+} from '../../index'
 export function OverlaysSection() {
   const { toast } = useToast()
   const [modalOpen, setModalOpen] = useState(false)
@@ -62,11 +72,21 @@ export function OverlaysSection() {
                   Open {s}
                 </Button>
               ))}
-              <Button variant="ghost" size="sm" onClick={() => { setDrawerSide('right'); setDrawerOpen(true) }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  setDrawerSide('right')
+                  setDrawerOpen(true)
+                }}
+              >
                 Sheet (right)
               </Button>
             </div>
-            <p style={{ margin: '12px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>Overlay with blur 10px, ESC / click outside / Tab trap, 4 sides, 3 sizes — same API as Modal.</p>
+            <p style={{ margin: '12px 0 0', fontSize: 12, color: 'var(--ui-muted)' }}>
+              Overlay with blur 10px, ESC / click outside / Tab trap, 4 sides, 3 sizes — same API as
+              Modal.
+            </p>
           </Card.Content>
         </Card>
         <Drawer
@@ -74,7 +94,11 @@ export function OverlaysSection() {
           onClose={() => setDrawerOpen(false)}
           side={drawerSide}
           title={drawerSide === 'top' || drawerSide === 'bottom' ? 'Quick filters' : 'Edit project'}
-          description={drawerSide === 'top' || drawerSide === 'bottom' ? 'Choose period or status' : 'Change data and save. ESC closes.'}
+          description={
+            drawerSide === 'top' || drawerSide === 'bottom'
+              ? 'Choose period or status'
+              : 'Change data and save. ESC closes.'
+          }
           footer={
             <>
               <Button variant="ghost" onClick={() => setDrawerOpen(false)}>
@@ -92,7 +116,9 @@ export function OverlaysSection() {
           }
         >
           <div className="stack" style={{ gap: 12 }}>
-            <p style={{ fontSize: 13, color: 'var(--ui-muted)', margin: 0 }}>Drawer content — fluid spring 420ms. Try ESC or click outside.</p>
+            <p style={{ fontSize: 13, color: 'var(--ui-muted)', margin: 0 }}>
+              Drawer content — fluid spring 420ms. Try ESC or click outside.
+            </p>
           </div>
         </Drawer>
       </section>
@@ -105,18 +131,48 @@ export function OverlaysSection() {
               <Button variant="outline" onClick={() => setCmdOpen(true)}>
                 Open Command
               </Button>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--ui-muted)' }}>
-                Shortcut <Kbd>⌘</Kbd> + <Kbd>K</Kbd> <span style={{ opacity: 0.6 }}>(Ctrl+K on Win)</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  fontSize: 13,
+                  color: 'var(--ui-muted)',
+                }}
+              >
+                Shortcut <Kbd>⌘</Kbd> + <Kbd>K</Kbd>{' '}
+                <span style={{ opacity: 0.6 }}>(Ctrl+K on Win)</span>
               </span>
-              <span style={{ fontSize: 12, color: 'var(--ui-muted)' }}>Instant filter, ↑↓ + Enter, groups</span>
+              <span style={{ fontSize: 12, color: 'var(--ui-muted)' }}>
+                Instant filter, ↑↓ + Enter, groups
+              </span>
             </div>
           </Card.Content>
         </Card>
-        <Command open={cmdOpen} onClose={() => setCmdOpen(false)} placeholder="Search project, file or action…">
+        <Command
+          open={cmdOpen}
+          onClose={() => setCmdOpen(false)}
+          placeholder="Search project, file or action…"
+        >
           <Command.List>
             <Command.Group heading="Suggestions">
               <Command.Item
-                icon={<span style={{ width: 16, height: 16, display: 'grid', placeItems: 'center', borderRadius: 4, background: 'var(--ui-subtle)', border: '1px solid var(--ui-subtle-border)', fontSize: 10 }}>⎁</span>}
+                icon={
+                  <span
+                    style={{
+                      width: 16,
+                      height: 16,
+                      display: 'grid',
+                      placeItems: 'center',
+                      borderRadius: 4,
+                      background: 'var(--ui-subtle)',
+                      border: '1px solid var(--ui-subtle-border)',
+                      fontSize: 10,
+                    }}
+                  >
+                    ⎁
+                  </span>
+                }
                 shortcut={<Kbd>↵</Kbd>}
                 value="create project"
                 onSelect={() => {
@@ -127,7 +183,22 @@ export function OverlaysSection() {
                 Create new project
               </Command.Item>
               <Command.Item
-                icon={<span style={{ width: 16, height: 16, display: 'grid', placeItems: 'center', borderRadius: 4, background: 'var(--ui-subtle)', border: '1px solid var(--ui-subtle-border)', fontSize: 10 }}>⚡</span>}
+                icon={
+                  <span
+                    style={{
+                      width: 16,
+                      height: 16,
+                      display: 'grid',
+                      placeItems: 'center',
+                      borderRadius: 4,
+                      background: 'var(--ui-subtle)',
+                      border: '1px solid var(--ui-subtle-border)',
+                      fontSize: 10,
+                    }}
+                  >
+                    ⚡
+                  </span>
+                }
                 shortcut={<Kbd>G</Kbd>}
                 value="go to dashboard"
                 onSelect={() => {
@@ -140,17 +211,35 @@ export function OverlaysSection() {
             </Command.Group>
             <Command.Separator />
             <Command.Group heading="Recent files">
-              <Command.Item value="relatorio-q1.pdf" onSelect={() => { setCmdOpen(false); toast({ title: 'relatorio-q1.pdf' }) }}>
+              <Command.Item
+                value="relatorio-q1.pdf"
+                onSelect={() => {
+                  setCmdOpen(false)
+                  toast({ title: 'relatorio-q1.pdf' })
+                }}
+              >
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <FileIcon name="relatorio.pdf" size="sm" /> relatorio-q1.pdf
                 </span>
               </Command.Item>
-              <Command.Item value="budget.xlsx" onSelect={() => { setCmdOpen(false); toast({ title: 'budget.xlsx' }) }}>
+              <Command.Item
+                value="budget.xlsx"
+                onSelect={() => {
+                  setCmdOpen(false)
+                  toast({ title: 'budget.xlsx' })
+                }}
+              >
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <FileIcon name="budget.xlsx" size="sm" /> budget.xlsx
                 </span>
               </Command.Item>
-              <Command.Item value="backup.zip" onSelect={() => { setCmdOpen(false); toast({ title: 'backup.zip' }) }}>
+              <Command.Item
+                value="backup.zip"
+                onSelect={() => {
+                  setCmdOpen(false)
+                  toast({ title: 'backup.zip' })
+                }}
+              >
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
                   <FileIcon name="backup.zip" size="sm" /> backup.zip
                 </span>
@@ -167,13 +256,26 @@ export function OverlaysSection() {
           <Button variant="outline" onClick={() => setModalOpen(true)}>
             Open modal
           </Button>
-          <Button variant="outline" onClick={() => toast({ title: 'Saved successfully', variant: 'success' })}>
+          <Button
+            variant="outline"
+            onClick={() => toast({ title: 'Saved successfully', variant: 'success' })}
+          >
             Success toast
           </Button>
-          <Button variant="outline" onClick={() => toast({ title: 'Failed to save', description: 'Try again.', variant: 'danger' })}>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast({ title: 'Failed to save', description: 'Try again.', variant: 'danger' })
+            }
+          >
             Error toast
           </Button>
-          <Button variant="outline" onClick={() => toast({ title: 'Tip', description: 'Use toasts sparingly.', variant: 'info' })}>
+          <Button
+            variant="outline"
+            onClick={() =>
+              toast({ title: 'Tip', description: 'Use toasts sparingly.', variant: 'info' })
+            }
+          >
             Info toast
           </Button>
         </div>

@@ -43,7 +43,9 @@
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  transition: transform var(--ui-duration) ease, background-color var(--ui-duration) ease;
+  transition:
+    transform var(--ui-duration) ease,
+    background-color var(--ui-duration) ease;
 }
 
 .checked .thumb {

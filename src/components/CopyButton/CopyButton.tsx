@@ -1,5 +1,7 @@
-import { forwardRef, useRef, useState, type ButtonHTMLAttributes } from 'react'
+import { type ButtonHTMLAttributes, forwardRef, useRef, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './CopyButton.module.css'
 
 export type CopyButtonSize = 'sm' | 'md'
@@ -12,8 +14,17 @@ export interface CopyButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonEle
 }
 
 export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(function CopyButton(
-  { value, timeout = 1800, size = 'sm', onCopy, className, onClick, 'aria-label': ariaLabel, ...rest },
-  ref,
+  {
+    value,
+    timeout = 1800,
+    size = 'sm',
+    onCopy,
+    className,
+    onClick,
+    'aria-label': ariaLabel,
+    ...rest
+  },
+  ref
 ) {
   const [copied, setCopied] = useState(false)
   const tRef = useRef<number>(0)
@@ -29,18 +40,20 @@ export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(functio
       tRef.current = window.setTimeout(() => setCopied(false), timeout)
     }
     if (navigator.clipboard?.writeText) {
-      navigator.clipboard.writeText(text).then(doCopy).catch(() => {
-
-        const ta = document.createElement('textarea')
-        ta.value = text
-        ta.style.position = 'fixed'
-        ta.style.opacity = '0'
-        document.body.appendChild(ta)
-        ta.select()
-        document.execCommand('copy')
-        ta.remove()
-        doCopy()
-      })
+      navigator.clipboard
+        .writeText(text)
+        .then(doCopy)
+        .catch(() => {
+          const ta = document.createElement('textarea')
+          ta.value = text
+          ta.style.position = 'fixed'
+          ta.style.opacity = '0'
+          document.body.appendChild(ta)
+          ta.select()
+          document.execCommand('copy')
+          ta.remove()
+          doCopy()
+        })
     } else {
       const ta = document.createElement('textarea')
       ta.value = text

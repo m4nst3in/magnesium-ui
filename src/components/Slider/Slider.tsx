@@ -1,21 +1,23 @@
 import {
   forwardRef,
+  type HTMLAttributes,
+  type KeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+  useCallback,
   useEffect,
   useId,
   useRef,
   useState,
-  useCallback,
-  type HTMLAttributes,
-  type PointerEvent as ReactPointerEvent,
-  type KeyboardEvent,
 } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './Slider.module.css'
 
 type SliderValue = number | [number, number]
 
-export interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange'> {
-
+export interface SliderProps
+  extends Omit<HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange'> {
   value?: SliderValue
 
   defaultValue?: SliderValue
@@ -69,7 +71,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
     className,
     ...rest
   },
-  ref,
+  ref
 ) {
   const autoId = useId()
   const sliderId = id ?? autoId
@@ -106,7 +108,6 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       current = clampSnap(value as number)
     }
   } else {
-
     if (Array.isArray(internal)) {
       const a = clampSnap(internal[0])
       const b = clampSnap(internal[1])
@@ -129,7 +130,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       if (!isControlled) setInternal(next)
       onValueChange?.(next)
     },
-    [isControlled, onValueChange],
+    [isControlled, onValueChange]
   )
 
   const flush = useCallback(() => {
@@ -146,12 +147,15 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       pendingRef.current = v
       if (!rafRef.current) rafRef.current = requestAnimationFrame(flush)
     },
-    [flush],
+    [flush]
   )
 
-  useEffect(() => () => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current)
-  }, [])
+  useEffect(
+    () => () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current)
+    },
+    []
+  )
   const valueFromClientX = useCallback(
     (clientX: number) => {
       const track = trackRef.current
@@ -161,7 +165,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       const raw = min + ratio * (max - min)
       return clampSnap(raw)
     },
-    [min, max, clampSnap],
+    [min, max, clampSnap]
   )
 
   const handleTrackPointerDown = useCallback(
@@ -178,9 +182,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
         else idx = d0 <= d1 ? 0 : 1
         setActiveIndex(idx)
         const next: [number, number] =
-          idx === 0
-            ? [clamp(nextVal, min, cur[1]), cur[1]]
-            : [cur[0], clamp(nextVal, cur[0], max)]
+          idx === 0 ? [clamp(nextVal, min, cur[1]), cur[1]] : [cur[0], clamp(nextVal, cur[0], max)]
 
         const snapped: [number, number] =
           idx === 0
@@ -194,7 +196,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       setDragging(true)
       ;(e.currentTarget as HTMLElement).setPointerCapture(e.pointerId)
     },
-    [disabled, valueFromClientX, isRangeCurrent, current, activeIndex, min, max, step, commit],
+    [disabled, valueFromClientX, isRangeCurrent, current, activeIndex, min, max, step, commit]
   )
 
   const handlePointerMove = useCallback(
@@ -214,28 +216,29 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
         schedule(nextVal)
       }
     },
-    [disabled, valueFromClientX, isRangeCurrent, current, activeIndex, clampSnap, schedule],
+    [disabled, valueFromClientX, isRangeCurrent, current, activeIndex, clampSnap, schedule]
   )
 
-  const handlePointerUp = useCallback((e: ReactPointerEvent<HTMLDivElement>) => {
-    draggingRef.current = false
-    setDragging(false)
+  const handlePointerUp = useCallback(
+    (e: ReactPointerEvent<HTMLDivElement>) => {
+      draggingRef.current = false
+      setDragging(false)
 
-    if (rafRef.current) {
-      cancelAnimationFrame(rafRef.current)
-      rafRef.current = 0
-    }
-    if (pendingRef.current !== null) {
-      const v = pendingRef.current
-      pendingRef.current = null
-      commit(v)
-    }
-    try {
-      ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
-    } catch {
-
-    }
-  }, [commit])
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+        rafRef.current = 0
+      }
+      if (pendingRef.current !== null) {
+        const v = pendingRef.current
+        pendingRef.current = null
+        commit(v)
+      }
+      try {
+        ;(e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId)
+      } catch {}
+    },
+    [commit]
+  )
 
   const handleSingleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLDivElement>) => {
@@ -270,7 +273,7 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
       e.preventDefault()
       commit(next)
     },
-    [disabled, current, clampSnap, min, max, step, commit],
+    [disabled, current, clampSnap, min, max, step, commit]
   )
 
   const handleRangeKeyDown = useCallback(
@@ -314,13 +317,15 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
         commit([cur[0], v])
       }
     },
-    [disabled, current, clampSnap, min, max, step, commit],
+    [disabled, current, clampSnap, min, max, step, commit]
   )
 
   const toPct = useCallback((v: number) => ((v - min) / (max - min)) * 100, [min, max])
 
   const singlePct = !isRangeCurrent ? toPct(current as number) : 0
-  const rangePcts = isRangeCurrent ? (current as [number, number]).map(toPct) as [number, number] : ([0, 0] as [number, number])
+  const rangePcts = isRangeCurrent
+    ? ((current as [number, number]).map(toPct) as [number, number])
+    : ([0, 0] as [number, number])
   const fillLeft = isRangeCurrent ? rangePcts[0] : 0
   const fillWidth = isRangeCurrent ? rangePcts[1] - rangePcts[0] : singlePct
 
@@ -343,7 +348,13 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
         </div>
       )}
 
-      <div className={cn(styles.slider, disabled && styles.sliderDisabled, error && styles.sliderError)}>
+      <div
+        className={cn(
+          styles.slider,
+          disabled && styles.sliderDisabled,
+          error && styles.sliderError
+        )}
+      >
         {}
         <div
           ref={trackRef}
@@ -398,7 +409,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
                 onPointerDown={() => setActiveIndex(0)}
                 onFocus={() => setActiveIndex(0)}
               >
-                <span className={styles.bubble}>{formatValue((current as [number, number])[0])}</span>
+                <span className={styles.bubble}>
+                  {formatValue((current as [number, number])[0])}
+                </span>
               </div>
               <div
                 id={`${sliderId}-thumb-1`}
@@ -418,7 +431,9 @@ export const Slider = forwardRef<HTMLDivElement, SliderProps>(function Slider(
                 onPointerDown={() => setActiveIndex(1)}
                 onFocus={() => setActiveIndex(1)}
               >
-                <span className={styles.bubble}>{formatValue((current as [number, number])[1])}</span>
+                <span className={styles.bubble}>
+                  {formatValue((current as [number, number])[1])}
+                </span>
               </div>
             </>
           )}

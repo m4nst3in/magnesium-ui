@@ -1,5 +1,7 @@
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
+import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react'
+
 import { cn } from '../../utils/cn'
+
 import styles from './DatePicker.module.css'
 
 export interface DatePickerProps {
@@ -126,7 +128,10 @@ export function DatePicker({
 
   const moveFocus = (from: Date, deltaDays: number) => {
     const next = new Date(from.getFullYear(), from.getMonth(), from.getDate() + deltaDays)
-    if (next.getMonth() !== viewMonth.getMonth() || next.getFullYear() !== viewMonth.getFullYear()) {
+    if (
+      next.getMonth() !== viewMonth.getMonth() ||
+      next.getFullYear() !== viewMonth.getFullYear()
+    ) {
       setViewMonth(new Date(next.getFullYear(), next.getMonth(), 1))
     }
     const key = isoKey(next)
@@ -147,7 +152,12 @@ export function DatePicker({
 
     const [y, m, d] = key.split('-').map(Number)
     const from = new Date(y, m, d)
-    const jumps: Record<string, number> = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 7, ArrowUp: -7 }
+    const jumps: Record<string, number> = {
+      ArrowRight: 1,
+      ArrowLeft: -1,
+      ArrowDown: 7,
+      ArrowUp: -7,
+    }
 
     if (e.key in jumps) {
       e.preventDefault()
@@ -180,8 +190,7 @@ export function DatePicker({
         ? String(viewYear)
         : `${decadeStart} – ${decadeStart + 11}`
 
-  const headerAction =
-    view === 'days' ? 'months' : view === 'months' ? 'years' : 'months'
+  const headerAction = view === 'days' ? 'months' : view === 'months' ? 'years' : 'months'
 
   return (
     <div ref={rootRef} className={cn(styles.field, className)}>
@@ -209,7 +218,10 @@ export function DatePicker({
             }
           }}
         >
-          <span id={`${autoId}-value`} className={cn(styles.valueText, !current && styles.placeholder)}>
+          <span
+            id={`${autoId}-value`}
+            className={cn(styles.valueText, !current && styles.placeholder)}
+          >
             {current ? current.toLocaleDateString(locale) : placeholder}
           </span>
           <svg
@@ -320,7 +332,7 @@ export function DatePicker({
                           styles.day,
                           muted && styles.muted,
                           isToday && !selected && styles.today,
-                          selected && styles.selected,
+                          selected && styles.selected
                         )}
                         onClick={() => select(day)}
                       >
@@ -337,8 +349,7 @@ export function DatePicker({
                 {monthLabels(locale).map((name, i) => {
                   const isSelected =
                     !!current && current.getFullYear() === viewYear && current.getMonth() === i
-                  const isThisMonth =
-                    today.getFullYear() === viewYear && today.getMonth() === i
+                  const isThisMonth = today.getFullYear() === viewYear && today.getMonth() === i
                   return (
                     <button
                       key={name}
@@ -347,7 +358,7 @@ export function DatePicker({
                       className={cn(
                         styles.cellBtn,
                         isSelected && styles.cellSelected,
-                        isThisMonth && !isSelected && styles.cellToday,
+                        isThisMonth && !isSelected && styles.cellToday
                       )}
                       onClick={() => {
                         setViewMonth(new Date(viewYear, i, 1))
@@ -375,7 +386,7 @@ export function DatePicker({
                       className={cn(
                         styles.cellBtn,
                         isSelected && styles.cellSelected,
-                        isThisYear && !isSelected && styles.cellToday,
+                        isThisYear && !isSelected && styles.cellToday
                       )}
                       onClick={() => {
                         setViewMonth(new Date(year, viewMonthIdx, 1))

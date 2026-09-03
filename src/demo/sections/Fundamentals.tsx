@@ -114,6 +114,8 @@ export function FundamentalsSection() {
             <Skeleton style={{ height: 14, width: '40%' }} />
             <Skeleton style={{ height: 12, width: '90%' }} />
             <Skeleton style={{ height: 12, width: '75%' }} />
+            <Skeleton style={{ height: 12, width: '85%' }} />
+            <Skeleton style={{ height: 32, width: 120, borderRadius: 8 }} />
           </div>
         </section>
       </div>

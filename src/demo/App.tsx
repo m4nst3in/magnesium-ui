@@ -1,10 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { Button, ToastProvider } from '../index'
 import { FormsSection } from './sections/Forms'
 import { FundamentalsSection } from './sections/Fundamentals'
 import { NavigationSection } from './sections/Navigation'
 import { OverlaysSection } from './sections/Overlays'
+
+const CATEGORIES = [
+  { id: 'fundamentals', nav: 'Components' },
+  { id: 'forms', nav: 'Forms' },
+  { id: 'navigation', nav: 'Navigation' },
+  { id: 'overlays', nav: 'Overlays' },
+] as const
+
+type CategoryId = (typeof CATEGORIES)[number]['id']
+
+const THEME_KEY = 'magnesium-theme'
+
+function initialDark(): boolean {
+  if (typeof window === 'undefined') return true
+  const saved = window.localStorage.getItem(THEME_KEY)
+  if (saved === 'dark') return true
+  if (saved === 'light') return false
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
 
 export function App() {
   return (
@@ -15,14 +34,51 @@ export function App() {
 }
 
 function Playground() {
-  const [dark, setDark] = useState(true)
+  const [dark, setDark] = useState(initialDark)
+  const [query, setQuery] = useState('')
+  const [active, setActive] = useState<CategoryId>('fundamentals')
+  const mainRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+    window.localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light')
   }, [dark])
 
   useEffect(() => {
     document.body.style.overflow = ''
+  }, [])
+
+  // Live-filter demo cards by rendered text; collapse emptied categories.
+  useEffect(() => {
+    const main = mainRef.current
+    if (!main) return
+    const q = query.trim().toLowerCase()
+    main.querySelectorAll('.bentoCard').forEach((card) => {
+      const hit = q === '' || (card.textContent ?? '').toLowerCase().includes(q)
+      ;(card as HTMLElement).hidden = !hit
+    })
+    main.querySelectorAll('.category').forEach((category) => {
+      const visible = category.querySelector('.bentoCard:not([hidden])') !== null
+      ;(category as HTMLElement).hidden = q !== '' && !visible
+    })
+    const empty = main.querySelector<HTMLElement>('[data-search-empty]')
+    if (empty) empty.hidden = q === '' || main.querySelector('.category:not([hidden])') !== null
+  }, [query])
+
+  // Scrollspy: highlight the nav link of the category in view.
+  useEffect(() => {
+    const main = mainRef.current
+    if (!main) return
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(entry.target.id as CategoryId)
+        }
+      },
+      { rootMargin: '-30% 0px -60% 0px' }
+    )
+    main.querySelectorAll('.category').forEach((category) => observer.observe(category))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -48,25 +104,25 @@ function Playground() {
             Magnesium
           </a>
           <div className="topNavLinks">
-            <a className="topNavLink active" href="#fundamentals">
-              Components
-            </a>
-            <a className="topNavLink" href="#forms">
-              Forms
-            </a>
-            <a className="topNavLink" href="#navigation">
-              Navigation
-            </a>
-            <a className="topNavLink" href="#overlays">
-              Overlays
-            </a>
+            {CATEGORIES.map((category) => (
+              <a
+                key={category.id}
+                className={active === category.id ? 'topNavLink active' : 'topNavLink'}
+                href={`#${category.id}`}
+                aria-current={active === category.id ? 'location' : undefined}
+              >
+                {category.nav}
+              </a>
+            ))}
           </div>
         </div>
         <div className="topNavRight">
           <input
             className="topNavSearch"
-            placeholder="Search documentation..."
-            aria-label="Search"
+            placeholder="Filter components..."
+            aria-label="Filter components"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
           />
           <a
             href="https://github.com/m4nst3in/magnesium-ui"
@@ -84,15 +140,18 @@ function Playground() {
             variant="outline"
             size="sm"
             onClick={() => setDark((d) => !d)}
-            aria-label="Toggle theme"
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
           >
-            {dark ? '☀️' : '🌙'}
+            {dark ? 'Light' : 'Dark'}
           </Button>
-          <Button size="sm">+ New</Button>
         </div>
       </nav>
 
-      <main className="main" style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}>
+      <main
+        ref={mainRef}
+        className="main"
+        style={{ maxWidth: 1200, margin: '0 auto', width: '100%' }}
+      >
         <div id="fundamentals" className="category">
           <div className="categoryHeader">
             <h2>Fundamentals</h2>
@@ -123,6 +182,13 @@ function Playground() {
             <p>Modals, drawers, command.</p>
           </div>
           <OverlaysSection />
+        </div>
+
+        <div data-search-empty hidden className="searchEmpty">
+          <p>No components match &ldquo;{query.trim()}&rdquo;.</p>
+          <Button variant="outline" size="sm" onClick={() => setQuery('')}>
+            Clear search
+          </Button>
         </div>
       </main>
     </div>

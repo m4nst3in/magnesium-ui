@@ -98,7 +98,6 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
-  align-items: start;
 }
 
 .bentoCard {
@@ -278,4 +277,26 @@ html {
   .sidebar {
     display: none;
   }
+}
+
+.bentoCard[hidden],
+.category[hidden],
+.searchEmpty[hidden] {
+  display: none;
+}
+
+.searchEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 32px;
+  border: 1px dashed var(--ui-border-strong);
+  border-radius: 16px;
+  color: var(--ui-muted);
+}
+
+.searchEmpty p {
+  margin: 0;
+  font-size: 14px;
 }

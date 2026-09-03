@@ -68,29 +68,6 @@ export function FormsSection() {
             <DatePicker label="Delivery date" />
             <Textarea label="Message" placeholder="Write something…" />
           </div>
-          <div className="row" style={{ marginTop: 12 }}>
-            <Checkbox
-              label="I accept the terms"
-              checked={terms}
-              onChange={(e) => setTerms(e.target.checked)}
-            />
-            <Checkbox label="Disabled" disabled />
-            <span className="row" style={{ gap: 8 }}>
-              <Switch checked={notify} onCheckedChange={setNotify} />
-              <span style={{ fontSize: 14 }}>Notifications</span>
-            </span>
-          </div>
-          <div className="grid" style={{ marginTop: 12 }}>
-            <RadioGroup
-              label="Priority"
-              defaultValue="medium"
-              options={[
-                { value: 'low', label: 'Low' },
-                { value: 'medium', label: 'Medium' },
-                { value: 'high', label: 'High' },
-              ]}
-            />
-          </div>
         </section>
       </div>
 
@@ -118,6 +95,43 @@ export function FormsSection() {
         </section>
       </div>
 
+      <div className="bentoCard span12">
+        <section className="section" style={{ padding: 16 }}>
+          <h2>Controls</h2>
+          <div
+            className="grid"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}
+          >
+            <div className="stack">
+              <Checkbox
+                label="I accept the terms"
+                checked={terms}
+                onChange={(e) => setTerms(e.target.checked)}
+              />
+              <Checkbox label="Disabled" disabled />
+            </div>
+            <div className="stack">
+              <span className="row" style={{ gap: 8 }}>
+                <Switch checked={notify} onCheckedChange={setNotify} />
+                <span style={{ fontSize: 14 }}>Notifications</span>
+              </span>
+              <span style={{ fontSize: 12, color: 'var(--ui-muted)' }}>
+                Email and push updates.
+              </span>
+            </div>
+            <RadioGroup
+              label="Priority"
+              defaultValue="medium"
+              options={[
+                { value: 'low', label: 'Low' },
+                { value: 'medium', label: 'Medium' },
+                { value: 'high', label: 'High' },
+              ]}
+            />
+          </div>
+        </section>
+      </div>
+
       <div className="bentoCard span6">
         <section className="section" style={{ padding: 16 }}>
           <h2>Slider</h2>
@@ -138,6 +152,7 @@ export function FormsSection() {
               showValue
               formatValue={(v) => `$${v}`}
             />
+            <Slider label="Disabled" value={30} disabled />
           </div>
         </section>
       </div>
